@@ -16,6 +16,6 @@ tmp/.keep
 
 /node_modules
 /yarn-error.log
-
+config/secrets.yml
 .byebug_history
 BaseJump.wiki
