@@ -8,6 +8,7 @@ import PageContent from './page_content'
 class LandingPage extends React.Component {
   constructor(props) {
     super(props)
+    console.log('Im here in Landing Page!');
   }
 
   render(){
@@ -15,8 +16,6 @@ class LandingPage extends React.Component {
       <div>
         <Route exact path='/' component={NavBar} />
         <Route exact path='/' component={PageContent} />
-        <Route path='/signup' component={SessionFormContainer} />
-        <Route path='/login' component={SessionFormContainer} />
       </div>
     )
   }

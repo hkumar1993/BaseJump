@@ -1,0 +1,38 @@
+a.btn, input.btn{
+  text-decoration: none;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 25px;
+  background-color: gray;
+  transition: all .2s ease-in-out;
+  border: none;
+}
+
+a.btn:hover, input.btn:hover{
+  background-color: #707070;
+}
+
+a.btn.btn-primary, input.btn.btn-primary {
+  color: white;
+  padding: 5px 15px;
+  border-radius: 25px;
+  background-color: $landing-blue;
+}
+
+a.btn.btn-primary:hover, input.btn.btn-primary:hover {
+  background-color: $landing-dark;
+}
+
+a.btn.btn-submit, input.btn.btn-submit {
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: $submit-green;
+  padding: 10px 5px;
+  box-shadow: 0px 2px 0px transparentize($submit-green, 0.5);
+
+}
+
+a.btn.btn-submit:hover, input.btn.btn-submit:hover {
+  background-color: $submit-dark-green;
+}

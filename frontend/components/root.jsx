@@ -1,19 +1,26 @@
 import React from 'react'
 import { Provider } from 'react-redux'
-import { HashRouter, Route} from 'react-router-dom'
+import { HashRouter, Route, Switch} from 'react-router-dom'
 import LandingPage from './landing_page/main'
 import App from './app/main'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
+import SessionFormContainer from './session/session_form_container'
 
-const Root = ({store}) => (
+const Root = ({store}) => {
+  console.log(store.getState().session.currentUser);
+  return (
   <Provider store={store}>
     <HashRouter>
       <div>
-        <AuthRoute to='/' component={LandingPage} />
-        <ProtectedRoute to='/:userId/projects' component={App} />
+        <Switch>
+          <AuthRoute path='/signup' component={SessionFormContainer} />
+          <AuthRoute path='/login' component={SessionFormContainer} />
+          <ProtectedRoute path='/:userId' component={App} />
+          <AuthRoute path='/' component={LandingPage} />
+        </Switch>
       </div>
     </HashRouter>
   </Provider>
-)
+)}
 
 export default Root

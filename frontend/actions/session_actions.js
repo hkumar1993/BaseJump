@@ -11,7 +11,7 @@ export const login = user => dispatch => {
 
 export const signup = user => dispatch => {
   return APIUtil.signup(user).
-    then(res => {console.log(res); dispatch(receiveCurrentUser(res.currentUser))}).
+    then(res => dispatch(receiveCurrentUser(res.currentUser))).
     fail(res => dispatch(receiveErrors(res.responseJSON.errors)))
 }
 

@@ -1,0 +1,130 @@
+.form-page{
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #F4EFE7;
+  height: 100vh;
+  font-family: $sans-serif;
+
+  img{
+    height: 75px;
+    transition: all .2s ease-in-out;
+  }
+
+  img:hover{
+    height: 75px;
+    transform: scale(1.1);
+  }
+
+
+  .formHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+
+    *{
+      margin-bottom: 20px;
+    }
+
+    h3{
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+
+  form::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -15px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+  }
+
+  form{
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 380px;
+    background-color: white;
+    border-radius: 5px;
+    position: relative;
+
+    div{
+      *{
+        margin-bottom: 5px;
+      }
+    }
+
+    label{
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    input{
+      box-sizing: border-box;
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid transparentize($landing-dark, 0.5);
+      background: none;
+    }
+
+    input[type=submit]{
+      margin-bottom: 0;
+      border: none;
+    }
+
+    .signup{
+      position: absolute;
+      color: white;
+      background-color: $signup-blue;
+      padding: 5px 15px;
+      border-radius: 25px;
+      bottom: 97%;
+      left: 29%;
+      margin: 0;
+      z-index: 10;
+    }
+
+    .barred-span::before{
+      content: '';
+      width: 100px;
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      margin-left: -105px;
+      border-width: 0.5px;
+      border-style: solid;
+      border-color: rgba(40,60,70,0.2);
+    }
+    .barred-span{
+      margin-top: 10px;
+      position: relative;
+      color: transparentize($landing-dark, 0.2);
+    }
+    .barred-span::after{
+      content: '';
+      width: 100px;
+      position: absolute;
+      top: 50%;
+      margin-left: 5px;
+      border-width: 0.5px;
+      border-style: solid;
+      border-color: rgba(40,60,70,0.2);
+    }
+
+  }
+  form.sign-up-form{
+    border: 2px solid $signup-blue;
+  }
+}

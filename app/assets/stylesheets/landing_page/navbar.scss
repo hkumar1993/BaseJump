@@ -1,0 +1,30 @@
+.landing-nav{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ul{
+    display: flex;
+
+    li {
+      margin: 0 5px;
+    }
+  }
+  a {
+    font-weight: 700;
+  }
+  a.logo{
+    width: 205px;
+    transition: all .2s ease-in-out;
+
+    img{
+      width: 205px;
+    }
+  }
+  a.logo:hover{
+    transform: scale(1.1);
+  }
+
+
+}
