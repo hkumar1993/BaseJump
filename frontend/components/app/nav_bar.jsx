@@ -23,9 +23,13 @@ class NavBar extends React.Component {
           <a onClick={this.toggleUserFuncs} className='btn btn-user'>
             {this.props.currentUser.name.slice(0,1)}</a>
           <ul id='user-funcs' className={`user-funcs-dropdown ${this.state.hidden ? 'hidden': ''}`}>
+            <a onClick={this.props.logout}>
             <li>
-              <a onClick={this.props.logout}>Logout</a>
+                <span>
+                  Logout
+                </span>
             </li>
+          </a>
           </ul>
         </div>
 

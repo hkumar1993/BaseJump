@@ -28,9 +28,6 @@
     transform: scale(1.1);
   }
 
-  .hidden{
-    display: none;
-  }
 
   .user-funcs-dropdown{
     background-color: $basecamp-user-funcs-purple;
@@ -38,12 +35,26 @@
     top: 100%;
     right: 0%;
     width: 250px;
-    padding: 10px;
+    padding: 10px 0;
+    display: block;
+    li{
+      width: 100%;
+      padding: 0 10px;
+      margin: 0;
+    }
+    li:hover{
+      background-color: $basecamp-user-hover-purple;
+    }
     a{
       color: white;
       font-size: 12px;
       font-weight: 400;
+      width: 100%;
+      cursor: pointer;
     }
   }
 
+  .user-funcs-dropdown.hidden{
+    display: none;
+  }
 }
