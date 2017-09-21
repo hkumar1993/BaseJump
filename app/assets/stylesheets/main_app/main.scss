@@ -1,0 +1,10 @@
+.main-app {
+  background-color: $basecamp-beige;
+  color: $landing-dark;
+  font-size: 15px;
+  line-height: 1.5;
+  font-family: $serif;
+  min-height: 100vh;
+}
+
+@import 'navbar'

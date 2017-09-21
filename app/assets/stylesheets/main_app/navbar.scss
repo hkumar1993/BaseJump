@@ -1,0 +1,49 @@
+.app-nav{
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $basecamp-light-beige;
+  position: relative;
+
+  ul{
+    display: flex;
+
+    li {
+      margin: 0 5px;
+    }
+  }
+  a {
+    font-weight: 700;
+  }
+  a.logo{
+    transition: all .2s ease-in-out;
+    display: flex;
+    align-items: center;
+    img{
+      width: 37px;
+    }
+  }
+  a.logo:hover{
+    transform: scale(1.1);
+  }
+
+  .hidden{
+    display: none;
+  }
+
+  .user-funcs-dropdown{
+    background-color: $basecamp-user-funcs-purple;
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    width: 250px;
+    padding: 10px;
+    a{
+      color: white;
+      font-size: 12px;
+      font-weight: 400;
+    }
+  }
+
+}

@@ -1,0 +1,8 @@
+/*
+Random Color logic used rom Pankaj Parashar
+http://pankajparashar.com/posts/random-colors-sass/
+*/
+
+$rand-red: random(256)-1;
+$rand-green: random(256)-1;
+$rand-blue: random(256)-1;

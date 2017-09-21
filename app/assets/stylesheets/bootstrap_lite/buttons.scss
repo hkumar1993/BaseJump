@@ -1,3 +1,5 @@
+@import 'random_color';
+
 a.btn, input.btn{
   text-decoration: none;
   color: black;
@@ -6,6 +8,7 @@ a.btn, input.btn{
   background-color: gray;
   transition: all .2s ease-in-out;
   border: none;
+  cursor: pointer;
 }
 
 a.btn:hover, input.btn:hover{
@@ -35,4 +38,25 @@ a.btn.btn-submit, input.btn.btn-submit {
 
 a.btn.btn-submit:hover, input.btn.btn-submit:hover {
   background-color: $submit-dark-green;
+}
+
+a.btn.btn-user::before{
+  content: " ";
+  position: absolute;
+  top: 50%;
+  margin-left: -20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.5) transparent transparent transparent;
+}
+
+a.btn.btn-user, input.btn.btn-user {
+  position: relative;
+  font-family: sans-serif;
+  font-weight: 400;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  color: white;
+  background-color: rgb($rand-red, $rand-green, $rand-blue);
 }
