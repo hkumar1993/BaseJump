@@ -17,8 +17,6 @@ const Auth = ( { component: Component, path, loggedIn, currentUser } ) => (
 export const AuthRoute = withRouter(connect(mapStateToProps, null)(Auth))
 
 const Protected = ( { component: Component, path, loggedIn, match, history } ) => {
-  console.log("params", match.params);
-  console.log("history", history);
   return(
   <Route path={path} render={
     (props) => (

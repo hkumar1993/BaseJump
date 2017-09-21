@@ -4,7 +4,6 @@ import { login, signup } from '../../actions/session_actions.js'
 import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
   let user = {
     username: '',
     password: ''

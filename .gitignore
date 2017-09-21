@@ -19,3 +19,6 @@ tmp/.keep
 config/secrets.yml
 .byebug_history
 BaseJump.wiki
+
+# Ignore application configuration
+/config/application.yml

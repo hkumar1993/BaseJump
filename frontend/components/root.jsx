@@ -7,7 +7,6 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import SessionFormContainer from './session/session_form_container'
 
 const Root = ({store}) => {
-  console.log(store.getState().session.currentUser);
   return (
   <Provider store={store}>
     <HashRouter>

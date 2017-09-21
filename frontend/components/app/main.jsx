@@ -1,14 +1,12 @@
 import React from 'react'
 import NavBarContainer from './nav_bar_container'
-import PageContent from './page_content'
+import PageContentContainer from './page_content_container'
 
 const App = (props) => {
-  console.log('Im here in App!');
-  console.log("Props", props);
   return (
     <div className='main-app'>
       <NavBarContainer />
-      <PageContent />
+      <PageContentContainer />
     </div>
 )
 }

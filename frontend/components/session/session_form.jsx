@@ -2,7 +2,6 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 class SessionForm extends React.Component {
   constructor(props) {
-    console.log('Im here in Session Form!');
     super(props)
     this.state = {user: this.props.user, errors: {}}
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -28,7 +27,6 @@ class SessionForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log('State', this.state);
     this.props.processForm(this.state.user).
       fail(res => this.handleErrors(res.responseJSON.errors))
   }
@@ -36,17 +34,14 @@ class SessionForm extends React.Component {
   handleErrors(err){
     let errors = {}
     err.forEach(error => {
-      console.log(error);
       const key = error.split(' ')[0].toLowerCase()
       errors = Object.assign({}, errors, {[key]: error})
-      console.log(errors);
     })
     this.setState({errors})
-    console.log('state', this.state);
   }
 
   signUpInputs(){
-    // console.log("Inside signupinputs");
+
     if(this.props.formType === 'signup'){
       return(
         <div className='signup-fields'>

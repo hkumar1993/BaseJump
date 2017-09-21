@@ -5,6 +5,13 @@
   line-height: 1.5;
   font-family: $serif;
   min-height: 100vh;
+
+  .main-app-content{
+    padding: 20px;
+  }
+
 }
+
+
 
 @import 'navbar'
