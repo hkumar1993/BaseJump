@@ -7,7 +7,6 @@
 #  username        :string           not null
 #  email           :string           not null
 #  avatar_url      :string
-#  company         :string           not null
 #  job_title       :string
 #  admin           :boolean
 #  owner           :boolean
@@ -15,6 +14,7 @@
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  company_id      :integer          not null
 #
 
 require 'test_helper'

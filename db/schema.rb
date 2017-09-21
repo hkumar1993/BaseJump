@@ -10,17 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170919181046) do
+ActiveRecord::Schema.define(version: 20170921163421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "image_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_companies_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "username", null: false
     t.string "email", null: false
     t.string "avatar_url"
-    t.string "company", null: false
     t.string "job_title"
     t.boolean "admin"
     t.boolean "owner"
@@ -28,6 +35,7 @@ ActiveRecord::Schema.define(version: 20170919181046) do
     t.string "session_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "company_id", null: false
   end
 
 end
