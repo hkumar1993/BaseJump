@@ -10,7 +10,8 @@ const mapStateToProps = (state, ownProps) => {
     password: ''
   }
   return {
-    user
+    user,
+    errors: state.errors.session
   }
 }
 

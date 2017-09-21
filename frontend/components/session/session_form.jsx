@@ -4,24 +4,26 @@ class SessionForm extends React.Component {
   constructor(props) {
     console.log('Im here in Session Form!');
     super(props)
-    this.state = this.props.user
-    console.log(this.props);
+    this.state = {user: this.props.user, errors: this.props.errors}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.signUpInputs = this.signUpInputs.bind(this)
     this.redirectLink = this.redirectLink.bind(this)
     this.formHeader = this.formHeader.bind(this)
+    this.demoLogin = this.demoLogin.bind(this)
+    this.demo = this.demo.bind(this)
   }
 
   update(field) {
     return (e) => {
-      this.setState({[field]: e.target.value})
+      const user = Object.assign({}, this.state.user, {[field]: e.target.value})
+      this.setState({user})
     }
   }
 
   handleSubmit(e) {
     e.preventDefault()
     console.log('State', this.state);
-    this.props.processForm(this.state)
+    this.props.processForm(this.state.user)
   }
 
   signUpInputs(){
@@ -45,6 +47,19 @@ class SessionForm extends React.Component {
       )
     }
   }
+
+  demoLogin(){
+    if(this.props.formType === 'login'){
+      return (
+        <input className='btn btn-submit' type='submit' value='Demo Login' onClick={this.demo}/>
+      )
+    }
+  }
+
+  demo(){
+    this.setState({user: {username: 'johndoe', password: 'password'}})
+  }
+
 
   redirectLink(){
     if(this.props.formType === "login"){
@@ -115,6 +130,9 @@ class SessionForm extends React.Component {
           <input type='password' onChange={this.update('password')}/>
 
           <input className='btn btn-submit' type='submit' value={formType === 'login' ? 'Login' : 'Sign Up'}/>
+          {
+            this.demoLogin()
+          }
         </form>
         {this.redirectLink()}
       </div>
