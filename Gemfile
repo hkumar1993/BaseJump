@@ -32,10 +32,10 @@ gem 'faker'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'pry-rails'
-gem 'annotate'
 gem 'jquery-rails'
 gem 'figaro'
 gem 'cloudinary'
+gem 'rails_12factor'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
