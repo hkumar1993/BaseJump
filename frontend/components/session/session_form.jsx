@@ -4,13 +4,14 @@ class SessionForm extends React.Component {
   constructor(props) {
     console.log('Im here in Session Form!');
     super(props)
-    this.state = {user: this.props.user, errors: this.props.errors}
+    this.state = {user: this.props.user, errors: {}}
     this.handleSubmit = this.handleSubmit.bind(this)
     this.signUpInputs = this.signUpInputs.bind(this)
     this.redirectLink = this.redirectLink.bind(this)
     this.formHeader = this.formHeader.bind(this)
     this.demoLogin = this.demoLogin.bind(this)
     this.demo = this.demo.bind(this)
+    this.handleErrors = this.handleErrors.bind(this)
   }
 
   update(field) {
@@ -20,29 +21,57 @@ class SessionForm extends React.Component {
     }
   }
 
+  componentWillReceiveProps(){
+    this.setState({user: {username: '', password: ''}, errors: {}})
+    console.log('Got new props!', this.props);
+    console.log('new state',this.state);
+  }
+
   handleSubmit(e) {
     e.preventDefault()
     console.log('State', this.state);
-    this.props.processForm(this.state.user)
+    this.props.processForm(this.state.user).
+      fail(res => this.handleErrors(res.responseJSON.errors))
+  }
+
+  handleErrors(err){
+    let errors = {}
+    err.forEach(error => {
+      console.log(error);
+      const key = error.split(' ')[0].toLowerCase()
+      errors = Object.assign({}, errors, {[key]: error})
+      console.log(errors);
+    })
+    this.setState({errors})
+    console.log('state', this.state);
   }
 
   signUpInputs(){
     // console.log("Inside signupinputs");
     if(this.props.formType === 'signup'){
       return(
-        <div>
+        <div className='signup-fields'>
           <label>
             Name
           </label>
-          <input type='text' onChange={this.update('name')} placeholder='John Doe'/>
+          <input className={Boolean(this.state.errors['name']) ? 'invalid-input' : ''}
+            type='text' onChange={this.update('name')} placeholder='John Doe'/>
+          <span className='form-errors'>{this.state.errors['name']}</span>
+          <br/>
           <label>
             Email
           </label>
-          <input type='text' onChange={this.update('email')} placeholder='John Doe'/>
+          <input className={Boolean(this.state.errors['email']) ? 'invalid-input' : ''}
+            type='text' onChange={this.update('email')} placeholder='John Doe'/>
+          <span className='form-errors'>{this.state.errors['email']}</span>
+          <br/>
           <label>
             Company
           </label>
-          <input type='text' onChange={this.update('company')} placeholder="John's Dough Company"/>
+          <input className={Boolean(this.state.errors['company']) ? 'invalid-input' : ''}
+            type='text' onChange={this.update('company')} placeholder="John's Dough Company"/>
+          <span className='form-errors'>{this.state.errors['company']}</span>
+          <br/>
         </div>
       )
     }
@@ -117,19 +146,25 @@ class SessionForm extends React.Component {
           <img src='https://37signals.com/images/basecamp-logo.png' />
         </Link>
 
-        <form onSubmit={this.handleSubmit} className={`session-form ${formType === 'login' ? '' : 'sign-up-form'}`}>
+        <form onSubmit={this.handleSubmit}
+          className={`session-form ${formType === 'login' ? '' : 'sign-up-form'}`}>
           {this.formHeader()}
           {this.signUpInputs()}
           <label>
             Username
           </label>
-          <input type='text' onChange={this.update('username')} placeholder='john@doe.com'/>
+          <input className={Boolean(this.state.errors['username']) ? 'invalid-input' : ''}
+            type='text' onChange={this.update('username')} placeholder='john@doe.com'/>
+          <span className='form-errors'>{this.state.errors['username']}</span>
           <label>
             Password
           </label>
-          <input type='password' onChange={this.update('password')}/>
-
-          <input className='btn btn-submit' type='submit' value={formType === 'login' ? 'Login' : 'Sign Up'}/>
+          <input className={Boolean(this.state.errors['password']) ? 'invalid-input' : ''}
+            type='password' onChange={this.update('password')}/>
+          <span className='form-errors'>{this.state.errors['password']}</span>
+          <br/>
+          <input className='btn btn-submit' type='submit'
+            value={formType === 'login' ? 'Login' : 'Sign Up'}/>
           {
             this.demoLogin()
           }
