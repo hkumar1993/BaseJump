@@ -16,15 +16,14 @@ class SessionForm extends React.Component {
 
   update(field) {
     return (e) => {
+      this.setState({errors: {}})
       const user = Object.assign({}, this.state.user, {[field]: e.target.value})
       this.setState({user})
     }
   }
 
   componentWillReceiveProps(){
-    this.setState({user: {username: '', password: ''}, errors: {}})
-    console.log('Got new props!', this.props);
-    console.log('new state',this.state);
+    this.setState({errors: {}})
   }
 
   handleSubmit(e) {
@@ -62,7 +61,7 @@ class SessionForm extends React.Component {
             Email
           </label>
           <input className={Boolean(this.state.errors['email']) ? 'invalid-input' : ''}
-            type='text' onChange={this.update('email')} placeholder='John Doe'/>
+            type='text' onChange={this.update('email')} placeholder='john@doe.com'/>
           <span className='form-errors'>{this.state.errors['email']}</span>
           <br/>
           <label>
@@ -154,7 +153,7 @@ class SessionForm extends React.Component {
             Username
           </label>
           <input className={Boolean(this.state.errors['username']) ? 'invalid-input' : ''}
-            type='text' onChange={this.update('username')} placeholder='john@doe.com'/>
+            type='text' onChange={this.update('username')} placeholder='johndoe'/>
           <span className='form-errors'>{this.state.errors['username']}</span>
           <label>
             Password
