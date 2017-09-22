@@ -53,10 +53,10 @@ a.btn.btn-user::before{
 a.btn.btn-user, input.btn.btn-user {
   position: relative;
   font-family: sans-serif;
-  font-weight: 400;
   text-align: center;
-  width: 20px;
-  height: 20px;
+  max-width: 30px;
+  max-height: 30px;
+  border-radius: 100px;
   color: white;
   background-color: rgb($rand-red, $rand-green, $rand-blue);
 }

@@ -1,0 +1,16 @@
+.project-section{
+  text-align: center;
+  width: 900px;
+  margin-bottom: 20px;
+
+  .project-divider{
+    text-align: center;
+    position: relative;
+    text-transform: capitalize;
+    color: $basecamp-dark-beige;
+    font-weight: 500;
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+}

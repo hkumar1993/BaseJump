@@ -24,13 +24,28 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6, allow_nil: true}
 
   belongs_to :business,
-  primary_key: :id,
-  foreign_key: :company_id,
-  class_name: :Company
+    primary_key: :id,
+    foreign_key: :company_id,
+    class_name: :Company
+
+  has_many :user_projects,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :UserProject
+
+  has_many :projects,
+    through: :user_projects,
+    source: :project
+
+  has_many :adminned_projects,
+    primary_key: :id,
+    foreign_key: :admin_id,
+    class_name: :Project,
+    inverse_of: :admin
 
   before_validation :ensure_session_token
 
-  attr_reader :password, :company
+  attr_reader :password, :companydo
 
 
   def self.find_by_credentials(login_cred, password)
@@ -64,10 +79,5 @@ class User < ApplicationRecord
   def ensure_session_token
     self.session_token ||= reset_session_token!
   end
-
-  def ensure_company_exists
-    company = Company.find_by_company()
-  end
-
 
 end

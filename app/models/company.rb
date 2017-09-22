@@ -18,8 +18,16 @@ class Company < ApplicationRecord
     foreign_key: :company_id,
     class_name: :User
 
+  has_many :projects,
+    through: :employees,
+    source: :projects
+
   def self.find_by_company(name)
     company = Company.find_by(name: name.downcase)
+  end
+
+  def find_company_hq
+    self.projects.select { |project| project.project_type == 'company'}.first
   end
 
   private

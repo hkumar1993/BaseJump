@@ -18,6 +18,14 @@ class Api::UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       login!(@user)
+      hq = @user.business.find_company_hq
+      unless hq
+        project = Project.create( name: 'Company HQ',
+        description: 'Company-wide announcements and stuff everyone needs to know',
+        project_type: 'company', admin_id: @user.id )
+        project.save
+      end
+      @user.business.find_company_hq.add_user(@user)
       render 'api/users/show'
     else
       @errors = @user.errors.full_messages
