@@ -3,7 +3,6 @@ export const fetchUserProjects = (id, projectType) => {
   if(projectType){
     url = `api/users/${id}/projects?project_type=${projectType}`
   }
-  console.log('Calling to :', url);
   return $.ajax({
     url
   })

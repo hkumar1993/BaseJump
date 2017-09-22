@@ -1,10 +1,36 @@
 .project-section{
   text-align: center;
   min-width: 700px;
-  width: 80vw;
+  width: 70vw;
   margin-bottom: 20px;
+  overflow: hidden;
 
+  .project-divider::before{
+    content: ' ';
+    width: 800px;
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-right: 20px;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: rgba(40,60,70,0.2);
+    z-index: 0;
+  }
+  .project-divider::after{
+    content: ' ';
+    width: 800px;
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-left: 20px;
+    border-width: 0.5px;
+    border-style: solid;
+    border-color: rgba(40,60,70,0.2);
+    z-index: 0;
+  }
   .project-divider{
+    background-color: $basecamp-beige;
     text-align: center;
     position: relative;
     text-transform: capitalize;
@@ -12,19 +38,56 @@
     font-weight: 500;
     font-size: 17px;
     margin-bottom: 10px;
+    // z-index: 10;
+    display: inline-block;
   }
 
-  ul{
+  ul.card-holder{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
+    li.card{
+      margin: 10px 20px;
+      height: 140px;
+      width: 250px;
+      text-align: left;
+      h2{
+        font-weight: bold;
+      }
+      ul{
+        font-size: 13px;
+      }
+
+    }
+
+    li.card.logo{
+      text-align: center;
+    }
+
+    .company-logo{
+      height: 140px;
+      overflow: hidden;
+      margin: 0 auto;
+      display: inline-block;
+    }
+
     .project-card{
+      text-align: left;
       background-color: white;
       padding: 10px;
-      width: 200px;
-      margin: 10px 20px;
+      width: 230px;
+      height: 120px;
+
       border-radius: 5px;
-      box-shadow: 0px 0px 5px black;
+      box-shadow: 0px 2px 5px transparentize(black, 0.8);
+
+      h1{
+        font-weight: bold;
+      }
+      p{
+        font-size: 12px;
+      }
     }
   }
 

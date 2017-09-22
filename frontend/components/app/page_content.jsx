@@ -4,7 +4,6 @@ import ProjectSectionContainer from './project_section_container'
 class PageContent extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
   }
 
   componentDidMount(){
@@ -13,7 +12,6 @@ class PageContent extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    // console.log('Content got new props !', newProps);
   }
 
   render(){

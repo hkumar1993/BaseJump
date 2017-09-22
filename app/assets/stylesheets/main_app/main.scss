@@ -17,5 +17,10 @@
   }
 }
 
+a.card{
+  text-decoration: none;
+  color: inherit;
+}
+
 @import 'navbar';
 @import 'project_section'

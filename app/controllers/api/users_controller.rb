@@ -24,8 +24,9 @@ class Api::UsersController < ApplicationController
         description: 'Company-wide announcements and stuff everyone needs to know',
         project_type: 'company', admin_id: @user.id )
         project.save
+        hq = project
       end
-      @user.business.find_company_hq.add_user(@user)
+      hq.add_user(@user)
       render 'api/users/show'
     else
       @errors = @user.errors.full_messages
