@@ -1,4 +1,5 @@
 import React from 'react'
+import ProjectCard from './project_card'
 
 class ProjectSection extends React.Component {
   constructor(props) {
@@ -32,11 +33,30 @@ class ProjectSection extends React.Component {
     return (
       <section className='project-section'>
         <h2 className='project-divider'>{this.dividerText()}</h2>
-        <p>Projects Go Here</p>
         <ul>
           {
             this.props.projects.map(project => {
-              return (<li>{project.name}</li>)
+              return (<ProjectCard project={project} key={project.id}/>)
+            })
+          }
+          {
+            this.props.projects.map(project => {
+              return (<ProjectCard project={project} key={project.id}/>)
+            })
+          }
+          {
+            this.props.projects.map(project => {
+              return (<ProjectCard project={project} key={project.id}/>)
+            })
+          }
+          {
+            this.props.projects.map(project => {
+              return (<ProjectCard project={project} key={project.id}/>)
+            })
+          }
+          {
+            this.props.projects.map(project => {
+              return (<ProjectCard project={project} key={project.id}/>)
             })
           }
         </ul>
