@@ -1,0 +1,31 @@
+.project-page{
+  min-height: 100vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  h1{
+    font-size: 40px;
+    font-weight: 700;
+  }
+
+  h2{
+    font-size: 15px;
+  }
+
+  .user-list{
+    display: inherit;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    ul{
+      display: inherit;
+      margin-right: 5px;
+      li{
+        margin-right:5px;
+      }
+    }
+
+  }
+}

@@ -1,6 +1,6 @@
 @import 'random_color';
 
-a.btn, input.btn{
+a.btn, input.btn, span.btn{
   text-decoration: none;
   color: black;
   padding: 5px 10px;
@@ -8,11 +8,11 @@ a.btn, input.btn{
   background-color: gray;
   transition: all .2s ease-in-out;
   border: none;
-  cursor: pointer;
 }
 
-a.btn:hover, input.btn:hover{
+a.btn:hover, input.btn:hover, span.btn:hover{
   background-color: #707070;
+  cursor: pointer;
 }
 
 a.btn.btn-primary, input.btn.btn-primary {
@@ -40,6 +40,21 @@ a.btn.btn-submit:hover, input.btn.btn-submit:hover {
   background-color: $submit-dark-green;
 }
 
+a.btn.btn-normal, input.btn.btn-normal {
+  color: $landing-dark;
+  padding: 10px 15px !important;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px 5px;
+  box-shadow: 0px 2px 0px transparentize(black, 0.8);
+
+}
+
+a.btn.btn-normal:hover, input.btn.btn-normal:hover {
+  background-color: transparentize(black, 0.9);
+  color: white;
+}
+
 a.btn.btn-user::before{
   content: " ";
   position: absolute;
@@ -50,7 +65,7 @@ a.btn.btn-user::before{
   border-color: rgba(0,0,0,0.5) transparent transparent transparent;
 }
 
-a.btn.btn-user, input.btn.btn-user {
+a.btn.btn-user, input.btn.btn-user, span.btn.btn-user {
   position: relative;
   font-family: sans-serif;
   text-align: center;
