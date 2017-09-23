@@ -6,7 +6,7 @@ const UserList = ({users}) => {
     <div className='user-list'>
       <ul>
         {
-          users.map(user => <li><span className='btn btn-user' key={user.id}>{user.name.slice(0,1)}</span></li>)
+          users.map(user => <li key={user.id}><span className='btn btn-user'>{user.name.slice(0,1)}</span></li>)
         }
       </ul>
       <a className='btn btn-normal'>Add/Remove People...</a>
