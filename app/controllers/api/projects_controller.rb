@@ -1,7 +1,5 @@
 class Api::ProjectsController < ApplicationController
 
-  before_action :ensure_user_project
-
   def index
     begin
       user = User.find(params[:user_id])

@@ -18,9 +18,10 @@ class ProjectShow extends React.Component {
 
   componentWillReceiveProps(newprops){
     console.log('New Props!!', newprops);
+    if(this.props.projectIds.includes(newprops.match.params.projectId)){
     this.setState({users: newprops.users})
     this.setState({project: newprops.project})
-    setTimeout(() => this.setState({loading: false}), 1000);
+    setTimeout(() => this.setState({loading: false}), 500);}
   }
 
   render(){

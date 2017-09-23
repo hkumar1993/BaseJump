@@ -1,7 +1,5 @@
 class Api::CompaniesController < ApplicationController
 
-  before_action :ensure_current_user_company
-
   def show
     begin
       @company = Company.find(params[:id])
