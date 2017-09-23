@@ -57,7 +57,14 @@ class ProjectSection extends React.Component {
   render(){
     return (
       <section className='project-section'>
-        <h2 className='project-divider'>{this.dividerText()}</h2>
+        {
+          this.props.projectType === 'company' ? null : (
+            <Link to='/' className='btn btn-new'>New</Link>
+          )
+        }
+        <h2 className='project-divider'>{this.dividerText()}
+        </h2>
+
         <ul className='card-holder'>
           { this.companyLogo() }
           {

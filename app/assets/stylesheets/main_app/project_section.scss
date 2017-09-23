@@ -4,6 +4,8 @@
   width: 775px;
   margin-bottom: 20px;
   overflow: hidden;
+  position: relative;
+  padding-top: 12px;
 
   .project-divider::before{
     content: ' ';

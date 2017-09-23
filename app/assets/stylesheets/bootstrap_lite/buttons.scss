@@ -75,3 +75,22 @@ a.btn.btn-user, input.btn.btn-user, span.btn.btn-user {
   color: white;
   background-color: rgb($rand-red, $rand-green, $rand-blue);
 }
+
+a.btn.btn-new, input.btn.btn-new {
+  position: absolute;
+  top: -1%;
+  left: 0%;
+  color: $landing-dark;
+  padding: 10px 15px !important;
+  border-radius: 5px;
+  background-color: white;
+  padding: 10px 5px;
+  box-shadow: 0px 2px 0px transparentize(black, 0.8);
+  z-index: 10;
+
+}
+
+a.btn.btn-new:hover, input.btn.btn-new:hover {
+  background-color: gray;
+  color: white;
+}
