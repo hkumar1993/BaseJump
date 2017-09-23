@@ -1,6 +1,7 @@
 import React from 'react'
 import UserList from './user_list'
 import ToolCardContainer from './tool_card_container'
+import { Redirect } from 'react-router-dom'
 
 class ProjectShow extends React.Component {
   constructor(props) {
@@ -26,22 +27,30 @@ class ProjectShow extends React.Component {
     const users = this.state.users
     const tools = ['messages','todos','schedule']
     const loading = this.state.loading
-    if(loading) {
+    if(this.props.projectIds.includes(this.props.currentProject)){
+      if(loading) {
+        return (
+          <div>Loading...</div>
+        )
+      }
+      else {
+        return (
+          <div className='project-page'>
+            <h1>{this.state.project.name}</h1>
+            <h2>{this.state.project.description}</h2>
+            <UserList users={Object.values(users)} />
+            <ul className='tools'>
+              {
+                tools.map(tool => <ToolCardContainer tool={tool} key={tool}/>)
+              }
+            </ul>
+          </div>
+        )
+      }
+    }
+    else {
       return (
-        <div>Loading...</div>
-      )
-    } else {
-      return (
-        <div className='project-page'>
-          <h1>{this.state.project.name}</h1>
-          <h2>{this.state.project.description}</h2>
-          <UserList users={Object.values(users)} />
-          <ul className='tools'>
-            {
-              tools.map(tool => <ToolCardContainer tool={tool} key={tool}/>)
-            }
-          </ul>
-        </div>
+        <Redirect to='/' />
       )
     }
   }

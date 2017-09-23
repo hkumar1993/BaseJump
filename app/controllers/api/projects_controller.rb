@@ -1,4 +1,7 @@
 class Api::ProjectsController < ApplicationController
+
+  before_action :ensure_user_project
+
   def index
     begin
       user = User.find(params[:user_id])
@@ -44,4 +47,19 @@ class Api::ProjectsController < ApplicationController
       render 'api/projects/show', status: 422
     end
   end
+
+  def ensure_user_project
+    if params[:id]
+    user_project_ids = current_user.projects.map { |project| project.id }
+      p user_project_ids
+      p params[:id]
+      unless user_project_ids.include?(params[:id].to_i)
+        @errors = ['Unauthorized Access']
+        render 'api/projects/show', status: 404
+        return nil
+      end
+    end
+  end
+
+
 end

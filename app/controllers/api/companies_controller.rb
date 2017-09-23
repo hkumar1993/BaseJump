@@ -1,11 +1,14 @@
 class Api::CompaniesController < ApplicationController
+
+  before_action :ensure_current_user_company
+
   def show
     begin
       @company = Company.find(params[:id])
     rescue
       @errors = ['Company not found']
     end
-    if @company
+    if @company &&
       @employees = @company.employees.map { |user| user.id }
       render 'api/companies/show'
     else
@@ -33,5 +36,15 @@ class Api::CompaniesController < ApplicationController
 
   def company_params
     params.require(:company).permit(:name,:image_url)
+  end
+
+  def ensure_current_user_company
+    p current_user.company_id
+    p params[:id]
+    if params[:id].to_i!=current_user.company_id
+      @errors = ['Unauthorized Access']
+      render 'api/companies/show', status: 404
+      return nil
+    end
   end
 end

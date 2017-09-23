@@ -5,7 +5,7 @@ import LandingPage from './landing_page/main'
 import App from './app/main'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import SessionFormContainer from './session/session_form_container'
-
+import ErrorPage from './404'
 // const ProjectRedirect = (props) => {
 //   return (
 //     <Redirect to={`/${props.match.userId}/projects`} />

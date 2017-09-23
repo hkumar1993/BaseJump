@@ -4,13 +4,17 @@ import {fetchProject} from '../../../actions/project_actions'
 import {fetchCompanyUsers} from '../../../actions/user_actions'
 
 const mapStateToProps = (state, ownProps) => {
+  const projectIds = Object.keys(state.entities.projects)
   const project = state.entities.projects[ownProps.match.params.projectId]
   const users = state.entities.users
   const currentUser = state.session.currentUser
+  const currentProject = ownProps.match.params.projectId
   return {
+    projectIds,
     project,
     users,
-    currentUser
+    currentUser,
+    currentProject
   }
 }
 
