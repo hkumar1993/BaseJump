@@ -5,6 +5,7 @@ class ToolCard extends React.Component {
   constructor(props) {
     super(props)
     this.toolHeader = this.toolHeader.bind(this)
+    this.toolLink = this.toolLink.bind(this)
   }
 
   toolHeader(){
@@ -18,9 +19,23 @@ class ToolCard extends React.Component {
     }
   }
 
+  toolLink(){
+    switch (this.props.tool) {
+      case 'messages':
+        return 'message-board'
+      case 'todos':
+        return 'todolists'
+      case 'schedule':
+        return 'schedule'
+    }
+  }
+
   render(){
+    const id = this.props.currentUser.id
+    const projectId = this.props.match.params.projectId
+    const link = this.toolLink()
     return (
-      <Link to='/'>
+      <Link to={`/${id}/projects/${projectId}/${link}`}>
       <li>
           <div>
             <h2>{this.toolHeader()}</h2>

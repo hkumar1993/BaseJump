@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { HashRouter, Route, Switch, Redirect, withRouter} from 'react-router-dom'
 import LandingPage from './landing_page/main'
-import App from './app/main'
+import AppContainer from './app/main_container'
 import { AuthRoute, ProtectedRoute } from '../util/route_util'
 import SessionFormContainer from './session/session_form_container'
 // const ProjectRedirect = (props) => {
@@ -19,7 +19,7 @@ const Root = ({store}) => {
         <Switch>
           <AuthRoute path='/signup' component={SessionFormContainer} />
           <AuthRoute path='/login' component={SessionFormContainer} />
-          <ProtectedRoute path='/:userId/projects' component={App} />
+          <ProtectedRoute path='/:userId/projects' component={AppContainer} />
           <AuthRoute path='/' component={LandingPage} />
         </Switch>
       </div>

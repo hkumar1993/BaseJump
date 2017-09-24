@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 class ProjectSection extends React.Component {
   constructor(props) {
     super(props)
-    // this.state = { projects }
+    this.state = { loading: false }
     this.dividerText = this.dividerText.bind(this)
     this.companyLogo = this.companyLogo.bind(this)
     this.userLinks = this.userLinks.bind(this)
@@ -14,9 +14,11 @@ class ProjectSection extends React.Component {
 
   componentDidMount(){
     // this.props.fetchUserProjects(this.props.currentUser.id, this.props.projectType)
+    this.setState({loading: true})
   }
 
   componentWillReceiveProps(newProps){
+    setTimeout(() => this.setState({loading: false}), 500)
   }
 
   dividerText(){
@@ -55,27 +57,35 @@ class ProjectSection extends React.Component {
   }
 
   render(){
-    return (
-      <section className='project-section'>
-        {
-          this.props.projectType === 'company' ? null : (
-            <Link to='/' className='btn btn-new'>New</Link>
-          )
-        }
-        <h2 className='project-divider'>{this.dividerText()}
-        </h2>
-
-        <ul className='card-holder'>
-          { this.companyLogo() }
+    if(this.state.loading){
+      if(this.props.projectType === 'company'){
+        return (<div>Loading...</div>)
+      } else {
+        return (<div></div>)
+      }
+    } else {
+      return (
+        <section className='project-section'>
           {
-            this.props.projects.map(project => {
-              return (<ProjectCard project={project} key={project.id}/>)
-            })
+            this.props.projectType === 'company' ? null : (
+              <Link to='/' className='btn btn-new'>New</Link>
+            )
           }
-          { this.userLinks() }
-        </ul>
-      </section>
-    )
+          <h2 className='project-divider'>{this.dividerText()}
+          </h2>
+
+          <ul className='card-holder'>
+            { this.companyLogo() }
+            {
+              this.props.projects.map(project => {
+                return (<ProjectCard project={project} key={project.id}/>)
+              })
+            }
+            { this.userLinks() }
+          </ul>
+        </section>
+      )
+    }
   }
 }
 
