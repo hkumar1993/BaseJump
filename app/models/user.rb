@@ -43,9 +43,23 @@ class User < ApplicationRecord
     class_name: :Project,
     inverse_of: :admin
 
+  has_many :authored_todo_lists,
+    primary_key: :id,
+    foreign_key: :author_id,
+    class_name: :TodoList
+
+  has_many :user_todos,
+    primary_key: :id,
+    foreign_key: :user_id,
+    class_name: :UserTodo
+
+  has_many :assignments,
+    through: :user_todos,
+    source: :assignment
+
   before_validation :ensure_session_token
 
-  attr_reader :password, :companydo
+  attr_reader :password, :company
 
 
   def self.find_by_credentials(login_cred, password)

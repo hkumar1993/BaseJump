@@ -19,3 +19,17 @@ project = Project.create(name: 'Company HQ',
   project_type: 'company')
 
 user_project = UserProject.create(user_id: user.id, project_id: project.id)
+
+user = User.create(name: 'Jane Doe',
+  username: 'janedoe',
+  password: 'password',
+  company: "John's Dough Company",
+  email: 'jane@doe.com')
+
+user.save
+user_project = UserProject.create(user_id: user.id, project_id: project.id)
+
+todo_list = TodoList.create(title: 'Our first todo list',
+description: 'This is the companies first todo list',
+author_id: 1,
+project_id: 1)

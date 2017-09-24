@@ -10,6 +10,15 @@ Rails.application.routes.draw do
     resources :companies, only: [:show, :update] do
       resources :users, only: [:index]
     end
-    resources :projects, only: [:show, :create]
+    resources :projects, only: [:show, :create, :update, :delete] do
+      resources :todolists, only: [:index]
+      resources :todos, only: [:index]
+    end
+
+    resources :todolists, only: [:show, :create, :update, :delete] do
+      resources :todos, only: [:index]
+    end
+
+    resources :todos, only: [:show, :create, :update, :delete]
   end
 end

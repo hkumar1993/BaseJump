@@ -29,6 +29,15 @@ class Project < ApplicationRecord
     class_name: :User,
     inverse_of: :adminned_projects
 
+  has_many :todo_lists,
+    primary_key: :id,
+    foreign_key: :project_id,
+    class_name: :TodoList
+
+  has_many :todos,
+    through: :todo_lists,
+    source: :todos
+
   def add_user(user)
     up = UserProject.create(user_id: user.id, project_id: self.id)
     up.save
