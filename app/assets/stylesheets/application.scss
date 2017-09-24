@@ -21,3 +21,18 @@
 @import "bootstrap_lite/buttons";
 @import "landing_page/main";
 @import "main_app/main";
+
+
+// Styling for react-simple-dropdown
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown__content {
+    display: none;
+    // position: absolute;
+}
+
+.dropdown--active .dropdown__content {
+    display: block;
+}

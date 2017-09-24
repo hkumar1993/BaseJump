@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Dropdown from 'react-simple-dropdown'
+import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'
 class NavBar extends React.Component {
   constructor(props) {
     super(props)
@@ -19,19 +21,25 @@ class NavBar extends React.Component {
         <Link to={`/${userId}/projects`} className='logo'>
           <img src='https://37signals.com/images/basecamp-logo.png' />
         </Link>
-        <div>
-          <a onClick={this.toggleUserFuncs} className='btn btn-user'>
-            {this.props.currentUser.name.slice(0,1)}</a>
-          <ul id='user-funcs' className={`user-funcs-dropdown ${this.state.hidden ? 'hidden': ''}`}>
-            <a onClick={this.props.logout}>
-            <li>
-                <span>
-                  Logout
-                </span>
-            </li>
-          </a>
-          </ul>
-        </div>
+        
+        <Dropdown>
+          <DropdownTrigger>
+            <a className='btn btn-user'>
+              {this.props.currentUser.name.slice(0,1)}
+            </a>
+          </DropdownTrigger>
+          <DropdownContent>
+            <ul id='user-funcs' className='user-funcs-dropdown'>
+              <a onClick={this.props.logout}>
+              <li>
+                  <span>
+                    Logout
+                  </span>
+              </li>
+            </a>
+            </ul>
+          </DropdownContent>
+        </Dropdown>
 
       </nav>
     )

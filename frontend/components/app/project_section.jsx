@@ -1,6 +1,8 @@
 import React from 'react'
 import ProjectCard from './project_card'
 import { Link } from 'react-router-dom'
+import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'
+
 
 class ProjectSection extends React.Component {
   constructor(props) {
@@ -9,6 +11,7 @@ class ProjectSection extends React.Component {
     this.dividerText = this.dividerText.bind(this)
     this.companyLogo = this.companyLogo.bind(this)
     this.userLinks = this.userLinks.bind(this)
+    this.newProjectButton = this.newProjectButton.bind(this)
 
   }
 
@@ -56,6 +59,21 @@ class ProjectSection extends React.Component {
     }
   }
 
+  newProjectButton(){
+    if(this.props.projectType!== 'company'){
+      return (
+        <Dropdown>
+          <DropdownTrigger>
+            <a className='btn btn-new'>New</a>
+          </DropdownTrigger>
+          <DropdownContent>
+            <input type='text' placeholder='Project Name' />
+          </DropdownContent>
+        </Dropdown>
+      )
+    }
+  }
+
   render(){
     if(this.state.loading){
       if(this.props.projectType === 'company'){
@@ -67,9 +85,7 @@ class ProjectSection extends React.Component {
       return (
         <section className='project-section'>
           {
-            this.props.projectType === 'company' ? null : (
-              <Link to='/' className='btn btn-new'>New</Link>
-            )
+            this.newProjectButton()
           }
           <h2 className='project-divider'>{this.dividerText()}
           </h2>
@@ -88,5 +104,10 @@ class ProjectSection extends React.Component {
     }
   }
 }
+// {
+//   this.props.projectType === 'company' ? null : (
+//     <Link to='/' className='btn btn-new'>New</Link>
+//   )
+// }
 
 export default ProjectSection
