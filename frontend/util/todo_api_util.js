@@ -31,3 +31,10 @@ export const updateTodo = todo => {
     data: { todo }
   })
 }
+
+export const toggleTodo = id => {
+  return $.ajax({
+    method: 'patch',
+    url: `api/todos/${id}/toggle`
+  })
+}

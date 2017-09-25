@@ -40,7 +40,11 @@ class TodoListIndex extends React.Component {
             <a className='btn btn-submit'>Make another list</a>
             <ul className='todolists'>
               { todoLists ? todoLists.map(todoList => (<TodoListIndexItem key={todoList.id}
-                  todoList={todoList} todos={this.props.todos} params={ this.props.params } />)) : <li></li>}
+                  todoList={todoList} todos={this.props.todos}
+                  params={ this.props.params }
+                  toggleTodo={ this.props.toggleTodo}
+                  createTodo={ this.props.createTodo }
+                  currentUser={ this.props.currentUser } />)) : <li></li>}
             </ul>
           </div>
         </div>

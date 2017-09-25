@@ -50,8 +50,15 @@ class Api::TodosController < ApplicationController
   def create
     @todo = Todo.create(todo_params)
     if @todo.save
-      user_todo = UserTodo.create(user_id: params[:assignee_id], todo_id: @todo.id)
-      user_todo.save
+      if(params[:assignees])
+        params[:assignees].each do |assignee|
+          user = User.find_by_username_or_email(assignee)
+          if user
+            user_todo = UserTodo.create(user_id: user.id, todo_id: @todo.id)
+            user_todo.save
+          end
+        end
+      end
       render 'api/todos/show'
     else
       @errors = @todo.errors.full_messages
@@ -78,8 +85,27 @@ class Api::TodosController < ApplicationController
     end
   end
 
+  def toggle
+    begin
+      @todo = Todo.find(params[:todo_id])
+    rescue
+      @errors = ['Could not find todo']
+    end
+
+    if @todo
+      if @todo.toggle_status
+        render 'api/todos/show'
+      else
+        @errors = @todo.errors.full_messages
+        render 'api/todos/show', status: 422
+      end
+    else
+      render 'api/todos/show', status: 404
+    end
+  end
+
   def todo_params
     params.require(:todo).permit(:title, :description, :author_id,
-      :done, :todo_list_id, :due_date)
+      :done, :todo_list_id, :due_date, :assignees)
   end
 end

@@ -45,3 +45,8 @@ export const updateTodo = id => dispatch => {
     then(res => dispatch(receiveTodo(res.todo))).
     fail(res => dispatch(receiveTodoErrors(res.responseJSON.errors)))
 }
+export const toggleTodo = id => dispatch => {
+  return APIUtil.toggleTodo(id).
+    then(res => dispatch(receiveTodo(res.todo))).
+    fail(res => dispatch(receiveTodoErrors(res.responseJSON.errors)))
+}

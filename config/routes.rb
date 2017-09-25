@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       resources :todos, only: [:index]
     end
 
-    resources :todos, only: [:show, :create, :update, :delete]
+    resources :todos, only: [:show, :create, :update, :delete] do
+      patch :toggle
+    end
+
   end
 end

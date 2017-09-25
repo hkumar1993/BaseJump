@@ -32,6 +32,11 @@ class Todo < ApplicationRecord
     through: :user_todos,
     source: :assignee
 
+    def toggle_status
+      self.done = !self.done
+      self.save
+    end
+
   def ensure_done_status
     if self.done.nil?
       self.done = false
