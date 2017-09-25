@@ -22,9 +22,9 @@ const Protected = ( props ) => {
   const loggedIn = props.loggedIn
   const match = props.match
   const history = props.history
-  const currentUserId = props.currentUserId
+  const currentUser = props.currentUser
   const userId = parseInt(props.computedMatch.params.userId)
-  if(currentUserId === userId){
+  if(currentUser && currentUser.id === userId){
     return(
       <Route path={path} render={
           (props) => (
@@ -32,8 +32,10 @@ const Protected = ( props ) => {
           )
         } />
       )
+  } else if(Boolean(currentUser)) {
+    return (<Redirect to={`/${currentUser.id}/projects`} />)
   } else {
-    return (<Redirect to={`/${currentUserId}/projects`} />)
+    return (<Redirect to='/' />)
   }
 }
 

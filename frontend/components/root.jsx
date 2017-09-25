@@ -12,6 +12,7 @@ import SessionFormContainer from './session/session_form_container'
 // }
 
 const Root = ({store}) => {
+  console.log(store.getState());
   return (
   <Provider store={store}>
     <HashRouter>
@@ -20,8 +21,7 @@ const Root = ({store}) => {
           <AuthRoute path='/signup' component={SessionFormContainer} />
           <AuthRoute path='/login' component={SessionFormContainer} />
           <ProtectedRoute path='/:userId/projects' component={AppContainer}
-            currentUserId={store.getState().session.currentUser.id}/>
-
+            currentUser={store.getState().session.currentUser}/>
           <AuthRoute path='/' component={LandingPage} />
         </Switch>
       </div>
