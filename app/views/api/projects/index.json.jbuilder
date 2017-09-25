@@ -1,4 +1,4 @@
-if @projects
+unless @errors
   json.projects do
     @projects.each do |project|
       json.set! project.id do

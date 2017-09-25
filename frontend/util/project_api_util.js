@@ -13,3 +13,19 @@ export const fetchProject = id => {
     url: `api/projects/${id}`
   })
 }
+
+export const postProject = project => {
+  return $.ajax({
+    url: `api/projects`,
+    method: 'post',
+    data: { project }
+  })
+}
+
+export const updateProject = project => {
+  return $.ajax({
+    url: `api/projects/${project.id}`,
+    method: 'patch',
+    data: { project }
+  })
+}

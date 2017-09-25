@@ -1,4 +1,4 @@
-if @employees
+unless @errors
   json.users do
     @employees.each do |user|
       json.set! user.id do

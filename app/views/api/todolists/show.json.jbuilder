@@ -1,4 +1,4 @@
-if @todo_list
+unless @errors
   json.todo_list do
     json.partial! 'api/todolists/todo_list', todo_list: @todo_list
   end

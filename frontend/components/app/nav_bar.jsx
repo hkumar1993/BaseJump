@@ -21,12 +21,10 @@ class NavBar extends React.Component {
         <Link to={`/${userId}/projects`} className='logo'>
           <img src='https://37signals.com/images/basecamp-logo.png' />
         </Link>
-        
+
         <Dropdown>
-          <DropdownTrigger>
-            <a className='btn btn-user'>
+          <DropdownTrigger className='btn btn-user'>
               {this.props.currentUser.name.slice(0,1)}
-            </a>
           </DropdownTrigger>
           <DropdownContent>
             <ul id='user-funcs' className='user-funcs-dropdown'>

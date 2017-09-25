@@ -40,6 +40,20 @@ a.btn.btn-submit:hover, input.btn.btn-submit:hover {
   background-color: $submit-dark-green;
 }
 
+a.btn.btn-cancel, input.btn.btn-cancel {
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: transparentize($landing-dark, 0.5);
+  padding: 10px 5px;
+  box-shadow: 0px 2px 0px transparentize($landing-dark, 0.9);
+
+}
+
+a.btn.btn-cancel:hover, input.btn.btn-cancel:hover {
+  background-color: $landing-dark;
+}
+
 a.btn.btn-normal, input.btn.btn-normal {
   color: $landing-dark;
   padding: 10px 15px !important;
@@ -78,7 +92,7 @@ a.btn.btn-user, input.btn.btn-user, span.btn.btn-user {
 
 a.btn.btn-new, input.btn.btn-new {
   position: absolute;
-  top: -1%;
+  top: 0%;
   left: 0%;
   color: $landing-dark;
   padding: 10px 15px !important;

@@ -60,7 +60,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:project).permit(:name, :description, :type, :admin_id)
+    params.require(:project).permit(:name, :description, :project_type, :admin_id)
   end
 
 end

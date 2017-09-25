@@ -7,20 +7,36 @@ import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdow
 class ProjectSection extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { loading: false }
+    this.state = {
+      submittedProject: false,
+      loading: false,
+      project: {name: '', project_type: '', admin_id: ''}
+    }
     this.dividerText = this.dividerText.bind(this)
     this.companyLogo = this.companyLogo.bind(this)
     this.userLinks = this.userLinks.bind(this)
     this.newProjectButton = this.newProjectButton.bind(this)
+    this.update = this.update.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleCancel = this.handleCancel.bind(this)
 
   }
 
   componentDidMount(){
-    // this.props.fetchUserProjects(this.props.currentUser.id, this.props.projectType)
     this.setState({loading: true})
+    const project = {
+      name: '',
+      project_type: this.props.projectType,
+      admin_id: this.props.currentUser.id
+    }
+    this.setState( { project })
   }
 
   componentWillReceiveProps(newProps){
+    if(this.state.submittedProject){
+      this.props.fetchUserProjects(this.props.currentUser.id).
+      then(this.setState({ submittedProject: false}))
+    }
     setTimeout(() => this.setState({loading: false}), 500)
   }
 
@@ -60,18 +76,57 @@ class ProjectSection extends React.Component {
   }
 
   newProjectButton(){
-    if(this.props.projectType!== 'company'){
+    const projectType = this.props.projectType
+    if(projectType !== 'company'){
       return (
         <Dropdown>
-          <DropdownTrigger>
-            <a className='btn btn-new'>New</a>
+          <DropdownTrigger className='btn btn-new'>
+            New
           </DropdownTrigger>
           <DropdownContent>
-            <input type='text' placeholder='Project Name' />
+            <form className='new-project-dropdown'>
+              <input type='text'
+                placeholder={`${projectType[0].toUpperCase() + projectType.slice(1)} Name`}
+                value={this.state.project.name} onChange={this.update}/>
+              <div>
+                <input type='submit' value='Save' className='btn btn-submit'
+                  onClick={this.handleSubmit} />
+                <input type='submit' value='Cancel' className='btn btn-cancel'
+                  onClick={this.handleCancel}/>
+              </div>
+            </form>
           </DropdownContent>
         </Dropdown>
       )
     }
+  }
+
+  update(e) {
+    e.preventDefault()
+    const project = Object.assign({}, this.state.project, {name: e.target.value})
+    this.setState({ project })
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
+    const project = {
+      name: '',
+      project_type: this.props.projectType,
+      admin_id: this.props.currentUser.id
+    }
+    this.props.postProject(this.state.project).
+      then(this.setState({ submittedProject: true })).
+      then(this.setState({ project }))
+  }
+
+  handleCancel(e) {
+    e.preventDefault()
+    const project = {
+      name: '',
+      project_type: this.props.projectType,
+      admin_id: this.props.currentUser.id
+    }
+    this.setState({ project })
   }
 
   render(){

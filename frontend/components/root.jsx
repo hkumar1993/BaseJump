@@ -19,7 +19,9 @@ const Root = ({store}) => {
         <Switch>
           <AuthRoute path='/signup' component={SessionFormContainer} />
           <AuthRoute path='/login' component={SessionFormContainer} />
-          <ProtectedRoute path='/:userId/projects' component={AppContainer} />
+          <ProtectedRoute path='/:userId/projects' component={AppContainer}
+            currentUserId={store.getState().session.currentUser.id}/>
+
           <AuthRoute path='/' component={LandingPage} />
         </Switch>
       </div>

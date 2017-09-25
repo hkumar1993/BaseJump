@@ -33,3 +33,10 @@ todo_list = TodoList.create(title: 'Our first todo list',
 description: 'This is the companies first todo list',
 author_id: 1,
 project_id: 1)
+
+todo = Todo.create(title: 'First todo',
+  author_id: 1,
+  todo_list_id: 1
+)
+
+user_todo = UserTodo.create(user_id: 1, todo_id: 1)

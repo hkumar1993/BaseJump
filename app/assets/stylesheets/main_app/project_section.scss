@@ -1,6 +1,6 @@
 .project-section{
   text-align: center;
-  // min-width: 700px;
+  min-height: 174px;
   width: 775px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -91,6 +91,50 @@
         font-size: 12px;
       }
     }
+  }
+
+  .new-project-dropdown{
+    box-shadow: 0px 2px 2px transparentize(black, 0.8);
+    border: 5 solid black;
+    background-color: white;
+    padding: 15px 15px 10px 15px;
+    position: absolute;
+    border-radius: 5px;
+    top: 30%;
+    left: 0%;
+    z-index: 10;
+
+    input{
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    input[type=text]{
+      padding: 10px;
+      border-radius: 5px;
+      border: 0.5px solid transparentize(black, 0.8);
+    }
+
+    div{
+      display: flex;
+      justify-content: flex-start;
+      input{
+        margin-right: 5px;
+        padding: 10px 10px;
+      }
+    }
+  }
+
+  .new-project-dropdown::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 15%;
+    margin-left: -15px;
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+
   }
 
 }

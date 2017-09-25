@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import App from './main'
+import { withRouter } from 'react-router-dom'
 
 const mapStateToProps = state => {
   return {
@@ -7,4 +8,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))

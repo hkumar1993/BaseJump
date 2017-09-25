@@ -9,26 +9,40 @@ class TodoListIndex extends React.Component {
 
   componentDidMount(){
     this.setState({loading: true})
-    this.props.fetchProjectTodoLists(this.props.projectId).
+    this.props.fetchProject(this.props.projectId).
+      then(this.props.fetchProjectTodoLists(this.props.projectId)).
       then(this.props.fetchProjectTodos(this.props.projectId))
   }
 
-  componentWillReceiveProps(){
+  componentWillReceiveProps(newProps){
+    if(newProps.match.params.projectId !== this.props.match.params.projectId){
+      this.props.fetchProject(this.props.projectId).
+        then(this.props.fetchProjectTodoLists(this.props.projectId)).
+        then(this.props.fetchProjectTodos(this.props.projectId))
+    }
     setTimeout(() => this.setState({loading: false}), 500)
   }
 
   render(){
-    console.log(this.props);
-    if(this.state.loading){
+    const todoLists = this.props.todoLists
+    console.log("Project:", this.props.project);
+    console.log("Loading:", this.state.loading);
+    if(this.state.loading || !Boolean(this.props.project)){
       return (
         <div>Loading...</div>
       )
     } else {
       return (
-        <div>
-          <ul>
-            { this.props.todoLists.map(todoList => (<TodoListIndexItem key={todoList.id} todoList={todoList} todos={this.props.todos} />))}
-          </ul>
+        <div className='tool-page'>
+          <header><span>{this.props.project.name}</span> > To-dos</header>
+          <div className='main-tool'>
+            <h1>To-dos <span id='completion'></span></h1>
+            <a className='btn btn-submit'>Make another list</a>
+            <ul className='todolists'>
+              { todoLists ? todoLists.map(todoList => (<TodoListIndexItem key={todoList.id}
+                  todoList={todoList} todos={this.props.todos} params={ this.props.params } />)) : <li></li>}
+            </ul>
+          </div>
         </div>
       )
     }

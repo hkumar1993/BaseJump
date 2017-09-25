@@ -30,3 +30,15 @@ export const fetchProject = id => dispatch => {
     then(res => dispatch(receiveProject(res.project))).
     fail(res => dispatch(receiveProjectErrors(res.responseJSON.errors)))
 }
+
+export const postProject = project => dispatch => {
+  return APIUtil.postProject(project).
+    then(res => dispatch(receiveProject(res.project))).
+    fail(res => dispatch(receiveProjectErrors(res.responseJSON.errors)))
+}
+
+export const updateProject = project => dispatch => {
+  return APIUtil.updateProject(project).
+    then(res => dispatch(receiveProject(res.project))).
+    fail(res => dispatch(receiveProjectErrors(res.responseJSON.errors)))
+}
