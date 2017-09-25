@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom'
 class ProjectShow extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props);
     this.state = { project: {name: '', description: '', adminId: '', teamMembers: []}, loading: false, users: {} }
   }
 
@@ -17,7 +16,6 @@ class ProjectShow extends React.Component {
   }
 
   componentWillReceiveProps(newprops){
-    console.log('New Props!!', newprops);
     if(this.props.projectIds.includes(newprops.match.params.projectId)){
     this.setState({users: newprops.users})
     this.setState({project: newprops.project})

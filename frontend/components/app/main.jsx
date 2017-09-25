@@ -4,6 +4,7 @@ import PageContentContainer from './page_content_container'
 import ProjectShowContainer from './project/project_show_container'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import TodoListIndexContainer from './todolist/todolist_index_container'
+import TodoListShowContainer from './todolist/todolist_show_container'
 
 class App extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class App extends React.Component {
         <div className='main-app'>
           <NavBarContainer />
           <Switch>
+            <Route exact path='/:userId/projects/:projectId/todolists/:listId' component={TodoListShowContainer}/>
             <Route exact path='/:userId/projects/:projectId/todolists' component={TodoListIndexContainer}/>
             <Redirect from='/:userId/projects/:projectId/:otherLink' to={`/${this.props.currentUserId}/projects`} />
             <Route exact path='/:userId/projects/:projectId' component={ProjectShowContainer}/>

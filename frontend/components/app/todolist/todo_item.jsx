@@ -3,7 +3,6 @@ import React from 'react'
 class TodoItem extends React.Component {
   constructor(props) {
     super(props)
-    console.log(props);
     this.toggleDone = this.toggleDone.bind(this)
   }
 

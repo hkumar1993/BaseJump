@@ -12,7 +12,7 @@ import SessionFormContainer from './session/session_form_container'
 // }
 
 const Root = ({store}) => {
-  console.log(store.getState());
+   (store.getState());
   return (
   <Provider store={store}>
     <HashRouter>

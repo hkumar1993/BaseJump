@@ -18,14 +18,13 @@ class TodoListForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     this.props.createTodoList( this.state ).
-    then( res => console.log('success',res)).
     then( this.setState( {
       title: '',
       description: '',
       project_id: this.props.project.id,
       author_id: this.props.currentUser.id
     } )).
-    fail(res => console.log('fail',res))
+    fail(res =>  ('fail',res))
   }
 
   handleCancel(e){

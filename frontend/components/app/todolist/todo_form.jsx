@@ -19,7 +19,6 @@ class TodoForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     this.props.createTodo( this.state ).
-    then( res => console.log('success',res)).
     then( this.setState( {
       title: '',
       assignees: [],
@@ -27,7 +26,7 @@ class TodoForm extends React.Component {
       todo_list_id: this.props.todoList.id,
       author_id: this.props.currentUser.id
     } )).
-    fail(res => console.log('fail',res))
+    fail(res =>  ('fail',res))
   }
 
   handleCancel(e){

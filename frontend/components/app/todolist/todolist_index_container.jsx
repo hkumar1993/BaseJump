@@ -5,7 +5,7 @@ import { fetchProjectTodos, toggleTodo, createTodo } from '../../../actions/todo
 import { fetchProject } from '../../../actions/project_actions'
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(ownProps);
+   (ownProps);
   const todoLists = state.entities.todoLists ? Object.values(state.entities.todoLists) : state.entities.todoLists
   const todos = state.entities.todos
   const projectId = ownProps.match.params.projectId

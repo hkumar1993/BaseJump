@@ -13,9 +13,9 @@ class Api::TodosController < ApplicationController
       else
         render 'api/todos/index', status: 404
       end
-    elsif params[:todo_list_id]
+    elsif params[:todolist_id]
       begin
-        todo_list = TodoList.find(params[:project_id])
+        todo_list = TodoList.find(params[:todolist_id])
       rescue
         @errors = ['Could not find that todo list']
       end
@@ -106,6 +106,6 @@ class Api::TodosController < ApplicationController
 
   def todo_params
     params.require(:todo).permit(:title, :description, :author_id,
-      :done, :todo_list_id, :due_date, :assignees)
+      :done, :todolist_id, :due_date, :assignees)
   end
 end

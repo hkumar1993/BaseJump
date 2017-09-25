@@ -29,12 +29,10 @@ class TodoListIndexItem extends React.Component {
   }
 
   filterTodos(props){
-    console.log('props',props);
     const todoList = props.todoList
     const todos = {}
     todoList.todoIds.forEach( id => todos[id] = props.todos[id])
     this.setState({todos})
-    console.log('state',this.state);
     let doneTodos = {};
     let pendingTodos = {};
 
@@ -46,7 +44,6 @@ class TodoListIndexItem extends React.Component {
       }
     })
     this.setState({ doneTodos, pendingTodos })
-    console.log('state',this.state);
   }
 
   componentWillReceiveProps(newProps){
@@ -65,7 +62,7 @@ class TodoListIndexItem extends React.Component {
 
     return (
       <li className='todolist-item'>
-          <h1><Link to={`${params.userId}/projects/${params.projectId}/todolists/${todoList.id}`}>{todoList.title}</Link></h1>
+          <h1><Link to={`/${params.userId}/projects/${params.projectId}/todolists/${todoList.id}`}>{todoList.title}</Link></h1>
           <ul className='todos pending'>
             { Object.keys(pendingTodos).map(id => <TodoItem key={id}
               todo={todos[id]} toggleTodo={toggleTodo}/>)}

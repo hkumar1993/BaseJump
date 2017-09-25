@@ -22,7 +22,6 @@ const receiveTodoListErrors = errors => ({
 export const fetchProjectTodoLists = id => dispatch => {
   return APIUtil.fetchProjectTodoLists(id).
     then(res => {
-      console.log('Results', res.todoLists);
       return dispatch(receiveTodoLists(res.todoLists))
     }).
     fail(res => dispatch(receiveTodoListErrors(res.responseJSON.errors)))

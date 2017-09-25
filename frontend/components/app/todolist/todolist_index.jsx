@@ -33,8 +33,8 @@ class TodoListIndex extends React.Component {
 
   render(){
     const todoLists = this.props.todoLists
-    console.log("Project:", this.props.project);
-    console.log("Loading:", this.state.loading);
+
+     
     if(this.state.loading || !Boolean(this.props.project)){
       return (
         <div>Loading...</div>
