@@ -13,18 +13,21 @@ class TodoForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
     this.update = this.update.bind(this)
+    this.toggleHide = this.toggleHide.bind(this)
   }
 
   handleSubmit(e){
     e.preventDefault()
     this.props.createTodo( this.state ).
-      then(this.setState({
-        title: '',
-        assignees: [],
-        description: '',
-        todo_list_id: this.props.todoList.id,
-        author_id: this.props.currentUser.id
-      }))
+    then( res => console.log('success',res)).
+    then( this.setState( {
+      title: '',
+      assignees: [],
+      description: '',
+      todo_list_id: this.props.todoList.id,
+      author_id: this.props.currentUser.id
+    } )).
+    fail(res => console.log('fail',res))
   }
 
   handleCancel(e){
@@ -36,6 +39,7 @@ class TodoForm extends React.Component {
       todo_list_id: this.props.todoList.id,
       author_id: this.props.currentUser.id
     } )
+    this.toggleHide()
   }
 
   update(field){
@@ -48,9 +52,15 @@ class TodoForm extends React.Component {
     }
   }
 
+  toggleHide(){
+    $(`#add-todo-${this.props.todoList.id}`).removeClass('hidden')
+    $(`#new-todo-${this.props.todoList.id}`).addClass('hidden')
+  }
+
+
   render(){
     return (
-      <div className='tool-form' id={`new-todo-list-${this.props.todoList.id}`}>
+      <div className='tool-form hidden' id={`new-todo-${this.props.todoList.id}`}>
         <form>
           <div className='input-fields'>
             <input type='text' placeholder='Add a new to-do...'

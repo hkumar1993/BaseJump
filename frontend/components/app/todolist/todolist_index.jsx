@@ -1,10 +1,12 @@
 import React from 'react'
 import TodoListIndexItem from './todolist_index_item'
+import TodoListForm from './todolist_form'
 
 class TodoListIndex extends React.Component {
   constructor(props) {
     super(props)
     this.state = {loading: false}
+    this.toggleHide = this.toggleHide.bind(this)
   }
 
   componentDidMount(){
@@ -23,6 +25,12 @@ class TodoListIndex extends React.Component {
     setTimeout(() => this.setState({loading: false}), 500)
   }
 
+  toggleHide(){
+    $(`#add-todolist-${this.props.project.id}`).addClass('hidden')
+    $(`#new-todolist-${this.props.project.id}`).removeClass('hidden')
+  }
+
+
   render(){
     const todoLists = this.props.todoLists
     console.log("Project:", this.props.project);
@@ -37,13 +45,19 @@ class TodoListIndex extends React.Component {
           <header><span>{this.props.project.name}</span> > To-dos</header>
           <div className='main-tool'>
             <h1>To-dos <span id='completion'></span></h1>
-            <a className='btn btn-submit'>Make another list</a>
+            <a className='btn btn-submit'
+              id={`add-todolist-${this.props.project.id}`}
+              onClick={this.toggleHide}>Make another list</a>
+            <TodoListForm project={this.props.project}
+              currentUser={this.props.currentUser}
+              createTodoList={this.props.createTodoList} />
             <ul className='todolists'>
               { todoLists ? todoLists.map(todoList => (<TodoListIndexItem key={todoList.id}
                   todoList={todoList} todos={this.props.todos}
                   params={ this.props.params }
                   toggleTodo={ this.props.toggleTodo}
                   createTodo={ this.props.createTodo }
+                  fetchTodoListTodos={this.props.fetchTodoListTodos}
                   currentUser={ this.props.currentUser } />)) : <li></li>}
             </ul>
           </div>

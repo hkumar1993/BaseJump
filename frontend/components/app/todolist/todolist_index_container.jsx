@@ -26,6 +26,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     fetchProjectTodoLists: id => dispatch(fetchProjectTodoLists(id)),
     fetchProjectTodos: id => dispatch(fetchProjectTodos(id)),
+    fetchTodoListTodos: id => dispatch(fetchTodoListTodos(id)),
     fetchProject: id => dispatch(fetchProject(id)),
     toggleTodo: id => dispatch(toggleTodo(id)),
     createTodoList: todo_list => dispatch(createTodoList(todo_list)),

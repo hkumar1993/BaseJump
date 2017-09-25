@@ -1,4 +1,5 @@
 import * as APIUtil from '../util/todo_api_util'
+import { fetchTodoList } from './todolist_actions'
 
 export const RECEIVE_TODOS = 'RECEIVE_TODOS'
 export const RECEIVE_TODO = 'RECEIVE_TODO'
@@ -38,6 +39,7 @@ export const fetchTodo = id => dispatch => {
 export const createTodo = id => dispatch => {
   return APIUtil.createTodo(id).
     then(res => dispatch(receiveTodo(res.todo))).
+    then(res => dispatch(fetchTodoList(res.todo.todoListId))).
     fail(res => dispatch(receiveTodoErrors(res.responseJSON.errors)))
 }
 export const updateTodo = id => dispatch => {

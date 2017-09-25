@@ -18,8 +18,8 @@ const Root = ({store}) => {
     <HashRouter>
       <div>
         <Switch>
-          <AuthRoute path='/signup' component={SessionFormContainer} />
-          <AuthRoute path='/login' component={SessionFormContainer} />
+          <AuthRoute exact path='/signup' component={SessionFormContainer} />
+          <AuthRoute exact path='/login' component={SessionFormContainer} />
           <ProtectedRoute path='/:userId/projects' component={AppContainer}
             currentUser={store.getState().session.currentUser}/>
           <AuthRoute path='/' component={LandingPage} />
