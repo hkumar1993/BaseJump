@@ -1,6 +1,7 @@
 import React from 'react'
 import TodoListIndexItem from './todolist_index_item'
 import TodoListForm from './todolist_form'
+import { Link } from 'react-router-dom'
 
 class TodoListIndex extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class TodoListIndex extends React.Component {
   }
 
   componentDidMount(){
+    console.log('Coponent Mounted!');
     this.setState({loading: true})
     this.props.fetchProject(this.props.projectId).
       then(this.props.fetchProjectTodoLists(this.props.projectId)).
@@ -17,6 +19,7 @@ class TodoListIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
+    console.log('Component Remounted!');
     if(newProps.match.params.projectId !== this.props.match.params.projectId){
       this.props.fetchProject(this.props.projectId).
         then(this.props.fetchProjectTodoLists(this.props.projectId)).
@@ -34,7 +37,7 @@ class TodoListIndex extends React.Component {
   render(){
     const todoLists = this.props.todoLists
 
-     
+
     if(this.state.loading || !Boolean(this.props.project)){
       return (
         <div>Loading...</div>
@@ -42,7 +45,12 @@ class TodoListIndex extends React.Component {
     } else {
       return (
         <div className='tool-page'>
-          <header><span>{this.props.project.name}</span> > To-dos</header>
+          <header>
+            <Link to={`/${this.props.currentUser.id}/projects/${this.props.project.id}`}>
+              <span>{this.props.project.name}</span>
+            </Link>
+
+           > To-dos</header>
           <div className='main-tool'>
             <h1>To-dos <span id='completion'></span></h1>
             <a className='btn btn-submit'

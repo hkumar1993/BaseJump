@@ -62,7 +62,12 @@ class TodoListIndexItem extends React.Component {
 
     return (
       <li className='todolist-item'>
-          <h1><Link to={`/${params.userId}/projects/${params.projectId}/todolists/${todoList.id}`}>{todoList.title}</Link></h1>
+          <h1>
+            {
+              !Boolean(params.listId) ? (<Link to={`/${params.userId}/projects/${params.projectId}/todolists/${todoList.id}`}>
+                  {todoList.title}</Link>) : ( <span>{todoList.title}</span> )
+            }
+            </h1>
           <ul className='todos pending'>
             { Object.keys(pendingTodos).map(id => <TodoItem key={id}
               todo={todos[id]} toggleTodo={toggleTodo}/>)}

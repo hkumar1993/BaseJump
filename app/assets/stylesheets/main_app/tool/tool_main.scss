@@ -41,6 +41,11 @@
       font-weight: 700;
     }
 
+    h1 span{
+      color: $landing-dark;
+      text-decoration: none;
+    }
+
 
     .todolist-item{
       display: block;
