@@ -1,0 +1,48 @@
+.message-form{
+  padding: 0 40px;
+  h2{
+    font-size: 16px;
+    font-weight: 700;
+  }
+  text-align: left;
+
+  .message-types{
+    display: flex;
+    justify-content: flex-start;
+    margin: 20px 0;
+    a{
+      border: 0.5px solid transparentize($landing-dark, 0.7);
+      margin: 10px 10px 10px 0;
+    }
+  }
+
+  .message-form-inputs form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    input[type=text], textarea{
+      width: 100%;
+      border: none;
+      padding: 10px 0;
+      outline: none;
+    }
+
+    textarea{
+      font-size: 15px;
+      resize: none;
+      min-height: 100px;
+    }
+
+    input[type=text]{
+      font-weight: 700;
+      font-size: 30px;
+      border-bottom: 0.5px solid transparentize($landing-dark, 0.7);
+    }
+
+    input[type=submit]{
+      font-size: 15px;
+      margin: 10px;
+    }
+  }
+}
