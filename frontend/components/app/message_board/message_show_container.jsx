@@ -8,9 +8,11 @@ import { fetchUser } from '../../../actions/user_actions'
 const mapStateToProps = (state, ownProps) => {
   return {
     projectId: ownProps.match.params.projectId,
+    project: state.entities.projects[ownProps.match.params.projectId],
     currentUserId: ownProps.match.params.userId,
     messageId: ownProps.match.params.messageId,
-    message: state.entities.messages[ownProps.match.params.messageId]
+    message: state.entities.messages[ownProps.match.params.messageId],
+    users: state.entities.users
   }
 }
 
