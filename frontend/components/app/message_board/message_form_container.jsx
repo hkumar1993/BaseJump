@@ -8,10 +8,12 @@ const mapStateToProps = (state, ownProps) => {
   const currentUser = state.session.currentUser
   const projectId = ownProps.match.params.projectId
   const project = state.entities.projects[projectId]
+  const errors = state.errors.message
   return {
     currentUser,
     projectId,
-    project
+    project,
+    errors
   }
 }
 

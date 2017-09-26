@@ -12,6 +12,7 @@ class TodoForm extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.handleErrors = this.handleErrors.bind(this)
     this.update = this.update.bind(this)
     this.toggleHide = this.toggleHide.bind(this)
   }
@@ -19,14 +20,14 @@ class TodoForm extends React.Component {
   handleSubmit(e){
     e.preventDefault()
     this.props.createTodo( this.state ).
-    then( this.setState( {
+    then( res => this.setState( {
       title: '',
       assignees: [],
       description: '',
       todo_list_id: this.props.todoList.id,
       author_id: this.props.currentUser.id
     } )).
-    fail(res =>  ('fail',res))
+    fail(res => this.handleErrors(res.responseJSON.errors))
   }
 
   handleCancel(e){
@@ -39,6 +40,15 @@ class TodoForm extends React.Component {
       author_id: this.props.currentUser.id
     } )
     this.toggleHide()
+  }
+
+  handleErrors(err){
+    let errors = {}
+    err.forEach(error => {
+      const key = error.split(' ')[0].toLowerCase()
+      errors = Object.assign({}, errors, {[key]: error})
+    })
+    this.setState({errors})
   }
 
   update(field){

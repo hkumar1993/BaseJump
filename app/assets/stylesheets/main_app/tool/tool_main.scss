@@ -18,10 +18,10 @@
   .main-tool{
     background-color: white;
     width: 765px;
-    padding: 50px 0px 75px 0;
+    padding: 50px 0px;
     border-radius: 10px;
     box-shadow: 0px 2px 5px transparentize($landing-dark, 0.8);
-
+    margin-bottom: 50px;
     h1{
       font-size: 25px;
       margin: 10px 0 30px 0;

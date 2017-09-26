@@ -13,11 +13,14 @@ class MessageForm extends React.Component {
         message_type: '',
         author_id: this.props.currentUser.id,
         project_id: this.props.projectId
-      }
+      },
+      errors: {}
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.handleErrors = this.handleErrors.bind(this)
     this.resetStateMessage = this.resetStateMessage.bind(this)
+    this.switchProjectType = this.switchProjectType.bind(this)
   }
 
   componentDidMount(){
@@ -25,12 +28,14 @@ class MessageForm extends React.Component {
     this.props.fetchProject(this.props.projectId)
   }
 
-  componentWillReceiveProps(){
+  componentWillReceiveProps(newProps){
+    this.setState({errors: {}})
     setTimeout(() => this.setState({loading: false}), 500)
   }
 
   update(field) {
     return (e) => {
+      this.setState({errors: {}})
       e.preventDefault()
       const message = Object.assign({}, this.state.message, { [field]: e.target.value })
       this.setState({ message })
@@ -40,12 +45,23 @@ class MessageForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     this.props.createMessage(this.state.message).
-      then(this.props.history.push(`/${this.props.currentUser.id}/projects/${this.props.project.id}/messages`))
+      then(res => this.props.history.push(`/${this.props.currentUser.id}/projects/${this.props.project.id}/messages`)).
+      fail(res => this.handleErrors(res.responseJSON.errors))
   }
 
   handleCancel(e){
     e.preventDefault()
     this.resetStateMessage()
+    this.props.history.push(`/${this.props.currentUser.id}/projects/${this.props.project.id}/messages`)
+  }
+
+  handleErrors(err){
+    let errors = {}
+    err.forEach(error => {
+      const key = error.split(' ')[0].toLowerCase()
+      errors = Object.assign({}, errors, {[key]: error})
+    })
+    this.setState({errors})
   }
 
   resetStateMessage(){
@@ -59,6 +75,18 @@ class MessageForm extends React.Component {
       }
     })
   }
+
+  switchProjectType(id) {
+    return () => {
+      console.log(id);
+      $('.message-types .btn').removeClass('btn-submit').addClass('btn-normal')
+      $(id).removeClass('btn-normal').addClass('btn-submit')
+      const message = Object.assign({}, this.state.message, { message_type: id.slice(1) })
+      this.setState({ message })
+    }
+  }
+
+
 
   render(){
     if(!this.props.project || this.state.loading){
@@ -81,18 +109,18 @@ class MessageForm extends React.Component {
             <div className='message-form'>
               <h2>What are you posting?</h2>
               <div className='message-types'>
-                <a id='announcement' className='btn btn-normal'>Announcement</a>
-                <a id='fyi' className='btn btn-normal'>FYI</a>
-                <a id='heartbeat' className='btn btn-normal'>Heartbeat</a>
-                <a id='pitch' className='btn btn-normal'>Pitch</a>
-                <a id='question' className='btn btn-normal'>Question</a>
-                <a id='something' className='btn btn-submit'>Something else</a>
+                <a onClick={this.switchProjectType('#announcement')} id='announcement' className='btn btn-normal'>Announcement</a>
+                <a onClick={this.switchProjectType('#fyi')} id='fyi' className='btn btn-normal'>FYI</a>
+                <a onClick={this.switchProjectType('#heartbeat')} id='heartbeat' className='btn btn-normal'>Heartbeat</a>
+                <a onClick={this.switchProjectType('#pitch')} id='pitch' className='btn btn-normal'>Pitch</a>
+                <a onClick={this.switchProjectType('#question')} id='question' className='btn btn-normal'>Question</a>
+                <a onClick={this.switchProjectType('#something')} id='something' className='btn btn-submit'>Something else</a>
               </div>
               <div className='message-form-inputs'>
                 <form>
-                  <input value={this.state.message.title} type='text' className='message-title' placeholder='Title...'
+                  <input value={this.state.message.title} type='text' className={this.state.errors.title ? 'invalid-input' : ''} placeholder='Title...'
                     onChange={this.update('title')} />
-                  <textarea value={this.state.message.body} className='message-body' placeholder='Write away...'
+                  <textarea value={this.state.message.body} className={this.state.errors.body ? 'invalid-input' : ''} placeholder='Write away...'
                     onChange={this.update('body')}></textarea>
                   <div>
                     <input onClick={this.handleSubmit} type='submit' className='btn btn-submit' value='Post this message' />
