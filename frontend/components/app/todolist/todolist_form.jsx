@@ -11,6 +11,7 @@ class TodoListForm extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleCancel = this.handleCancel.bind(this)
+    this.handleErrors = this.handleErrors.bind(this)
     this.update = this.update.bind(this)
     this.toggleHide = this.toggleHide.bind(this)
   }
@@ -24,10 +25,15 @@ class TodoListForm extends React.Component {
       project_id: this.props.project.id,
       author_id: this.props.currentUser.id
     } )).
-    fail(res =>  ('fail',res))
+    fail(res => this.handleErrors(res.responseJSON.errors))
+  }
+
+  handleErrors(err){
+    $(`#new-todolist-${this.props.project.id} #title`).addClass('invalid-input')
   }
 
   handleCancel(e){
+    $(`#new-todolist-${this.props.project.id} #title`).removeClass('invalid-input')
     e.preventDefault()
     this.setState( {
       title: '',
@@ -40,6 +46,7 @@ class TodoListForm extends React.Component {
 
   update(field){
     return (e) => {
+      $(`#new-todolist-${this.props.project.id} #title`).removeClass('invalid-input')
       let value = e.target.value
       this.setState({ [field]: value })
     }
@@ -56,7 +63,7 @@ class TodoListForm extends React.Component {
       <div className='tool-form todolist hidden' id={`new-todolist-${this.props.project.id}`}>
         <form>
           <div className='input-fields'>
-            <input type='text' placeholder='Name this list...'
+            <input type='text' id='title' placeholder='Name this list...'
               onChange={this.update('title')} value={this.state.title} />
             <input type='text' placeholder='Add a extra details...'
               onChange={this.update('description')} value={this.state.description} />

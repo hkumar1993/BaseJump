@@ -23,6 +23,10 @@
       border-bottom: 1px solid $dark-gray;
     }
 
+    input[type=text].invalid-input{
+      background-color: transparentize(red, 0.8);
+    }
+
   }
   .submit-buttons{
     padding: 0 20px;

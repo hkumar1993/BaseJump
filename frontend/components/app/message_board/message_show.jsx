@@ -1,41 +1,51 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import titleize from 'titleize'
 
 class MessageShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { loading: false, createdAt: '', updatedAt: '', author: {} }
+    this.state = { loading: true, createdAt: '', updatedAt: '', author: null }
   }
 
   componentDidMount(){
     this.setState({ loading: true })
     this.props.fetchProject(this.props.projectId).
-      then(this.props.fetchMessage(this.props.messageId))
+      then(res => this.props.fetchMessage(this.props.messageId)).
+      then(res => {
+        this.setState({
+          createdAt: (new Date(res.message.createdAt)).toDateString(),
+          updatedAt: (new Date(res.message.updatedAt)).toDateString(),
+        })
+        return this.props.fetchUser(res.message.authorId)
+      }).
+      then(res => this.setState({ author: res.user }))
   }
 
   componentWillReceiveProps(newProps){
-    let createdAt
-    let updatedAt
-    let author
-    console.log('new', newProps);
-    this.props.fetchUser(newProps.message.authorId).
-    then(() => {
-      author =  this.props.users[message.authorId]
-      createdAt = new Date(newProps.message.createdAt)
-      updatedAt = new Date(newProps.message.updatedAt)
-      createdAt = createdAt.toDateString()
-      updatedAt = updatedAt.toDateString()
-    }).
-    then(setTimeout(() => this.setState({ loading: false, createdAt, updatedAt, author }), 500))
+    console.log('New', newProps);
+    // if(newProps.messageId !== this.props.messageId){
+    //   console.log('New message');
+    //   this.props.fetchProject(this.props.projectId).
+    //     then(this.props.fetchMessage(this.props.messageId))
+    // }
+    // if(this.props.message && !this.props.users[this.props.message.authorId]){
+    //   console.log('new user');
+    //   newProps.fetchUser(newProps.message.authorId).
+    //
+    // }
+    // if(this.props.message && this.props.users[this.props.message.authorId]){
+    //   this.setState({ author: newProps.users[newProps.message.authorId]})
+    // }
+    setTimeout(() => this.setState({ loading: false }), 500)
   }
 
-
-
   render(){
+    console.log(this.state);
     if(!this.props.message || this.state.loading){
       return (<div>Loading ...</div>)
     } else {
-      console.log(this.state);
+      console.log('Type!!!',this.props.message.messageType);
       return (
         <div className='tool-page'>
           <header>
@@ -49,7 +59,16 @@ class MessageShow extends React.Component {
              > {this.props.message.title}
           </header>
           <div className='main-tool'>
-            <div className='author-details'>
+            <div>
+             { this.props.message.messageType === '' || this.props.message.messageType === 'something' ? 'Message' : `${titleize(this.props.message.messageType)}`}
+             {` by `}
+             { this.state.author.name }
+             {` on `}
+             { this.state.createdAt }
+            </div>
+            <div>
+              <h1>{this.props.message.title}</h1>
+              <p>{this.props.message.body}</p>
             </div>
           </div>
         </div>

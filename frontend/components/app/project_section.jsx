@@ -85,7 +85,7 @@ class ProjectSection extends React.Component {
           </DropdownTrigger>
           <DropdownContent>
             <form className='new-project-dropdown'>
-              <input type='text' id='teamname'
+              <input type='text' id={projectType}
                 placeholder={`${projectType[0].toUpperCase() + projectType.slice(1)} Name`}
                 value={this.state.project.name} onChange={this.update}/>
               <div>
@@ -102,7 +102,7 @@ class ProjectSection extends React.Component {
   }
 
   update(e) {
-    $('#teamname').removeClass('invalid-input')
+    $(`#${this.props.projectType}`).removeClass('invalid-input')
     e.preventDefault()
     const project = Object.assign({}, this.state.project, {name: e.target.value})
     this.setState({ project })
@@ -129,11 +129,12 @@ class ProjectSection extends React.Component {
       project_type: this.props.projectType,
       admin_id: this.props.currentUser.id
     }
+    $('.dropdown').removeClass('dropdown--active')
     this.setState({ project })
   }
 
   handleErrors(err) {
-    $('#teamname').addClass('invalid-input')
+    $(`#${this.props.projectType}`).addClass('invalid-input')
   }
 
   render(){

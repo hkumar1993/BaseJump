@@ -31,6 +31,7 @@ class TodoForm extends React.Component {
   }
 
   handleCancel(e){
+    $(`#new-todo-${this.props.todoList.id} #title`).removeClass('invalid-input')
     e.preventDefault()
     this.setState( {
       title: '',
@@ -43,16 +44,12 @@ class TodoForm extends React.Component {
   }
 
   handleErrors(err){
-    let errors = {}
-    err.forEach(error => {
-      const key = error.split(' ')[0].toLowerCase()
-      errors = Object.assign({}, errors, {[key]: error})
-    })
-    this.setState({errors})
+    $(`#new-todo-${this.props.todoList.id} #title`).addClass('invalid-input')
   }
 
   update(field){
     return (e) => {
+      $(`#new-todo-${this.props.todoList.id} #title`).removeClass('invalid-input')
       let value = e.target.value
       if( field === 'assignees' ){
         value = value.split(',')
@@ -72,7 +69,7 @@ class TodoForm extends React.Component {
       <div className='tool-form hidden' id={`new-todo-${this.props.todoList.id}`}>
         <form>
           <div className='input-fields'>
-            <input type='text' placeholder='Add a new to-do...'
+            <input type='text' id='title' placeholder='Add a new to-do...'
               onChange={this.update('title')} value={this.state.title} />
             <input type='text' placeholder='Assign to...'
               onChange={this.update('assignees')} value={this.state.assignees.join(',')}/>
