@@ -6,12 +6,14 @@ class MessageBoard extends React.Component {
   constructor(props){
     super(props)
     this.state = { loading: false }
+    console.log('PROPS!!!',props);
   }
 
   componentDidMount(){
     console.log('mounting props',this.props);
     this.setState({ loading: true})
-    this.props.fetchProject(this.props.match.params.projectId).
+    this.props.fetchCompanyUsers(this.props.currentUser.companyId).
+      then(this.props.fetchProject(this.props.match.params.projectId)).
       then(this.props.fetchProjectMessages(this.props.match.params.projectId))
   }
 
@@ -39,9 +41,11 @@ class MessageBoard extends React.Component {
               className='btn btn-submit'>
               Post a message
             </Link>
-            <ul>
+            <ul className='message-board'>
               {
-                this.props.messages.map(message => <MessageBoardItem message={message} key={message.id}/>)
+                this.props.messages.map(message => (<MessageBoardItem message={message}
+                  author={this.props.users[message.authorId]} key={message.id}
+                  params={this.props.match.params}/>))
               }
             </ul>
           </div>

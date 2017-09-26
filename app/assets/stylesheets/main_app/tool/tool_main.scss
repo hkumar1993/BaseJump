@@ -24,7 +24,7 @@
 
     h1{
       font-size: 25px;
-      margin: 10px 0;
+      margin: 10px 0 30px 0;
       font-weight: 700;
     }
   }
@@ -188,4 +188,5 @@
   }
 }
 
-@import 'todolist_form'
+@import 'todolist_form';
+@import 'message_board';

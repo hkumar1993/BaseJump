@@ -1,0 +1,35 @@
+.message-board{
+  padding: 20px 40px;
+  a{
+    text-decoration: none;
+    color: $landing-dark
+  }
+}
+.message-board-item{
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  max-height: 80px;
+  overflow: hidden;
+
+
+  div{
+    padding: 0 5px;
+  }
+
+
+  .author-image{
+    span{
+      font-size: 30px;
+    }
+  }
+
+
+  .message-details{
+    text-align: left;
+    h1{
+      font-size: 20px;
+      margin: 5px 0;
+    }
+  }
+}
