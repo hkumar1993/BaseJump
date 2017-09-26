@@ -5,13 +5,13 @@ export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS'
 
 export const login = user => dispatch => {
   return APIUtil.login(user).
-    then(res => dispatch(receiveCurrentUser(res.currentUser))).
+    then(res => dispatch(receiveCurrentUser(res.user))).
     fail(res => dispatch(receiveErrors(res.responseJSON.errors)))
 }
 
 export const signup = user => dispatch => {
   return APIUtil.signup(user).
-    then(res => dispatch(receiveCurrentUser(res.currentUser))).
+    then(res => dispatch(receiveCurrentUser(res.user))).
     fail(res => dispatch(receiveErrors(res.responseJSON.errors)))
 }
 

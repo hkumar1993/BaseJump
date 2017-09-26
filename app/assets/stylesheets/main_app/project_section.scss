@@ -100,7 +100,8 @@
     padding: 15px 15px 10px 15px;
     position: absolute;
     border-radius: 5px;
-    top: 30%;
+    margin-top: 60px;
+    top: 0%;
     left: 0%;
     z-index: 10;
 
@@ -113,6 +114,10 @@
       padding: 10px;
       border-radius: 5px;
       border: 0.5px solid transparentize(black, 0.8);
+    }
+
+    input[type=text].invalid-input{
+      background-color: transparentize(red, 0.8);
     }
 
     div{

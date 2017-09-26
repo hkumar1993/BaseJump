@@ -1,4 +1,4 @@
-import { RECEIVE_COMPANY_USERS } from '../actions/user_actions'
+import { RECEIVE_COMPANY_USERS, RECEIVE_USER } from '../actions/user_actions'
 
 const _emptyUsers = {}
 
@@ -7,6 +7,8 @@ const UsersReducer = ( state = _emptyUsers, action ) => {
   switch (action.type) {
     case RECEIVE_COMPANY_USERS:
       return action.users
+    case RECEIVE_USER:
+      return Object.assign({}, state, { [action.user.id]: action.user })
     default:
       return state
   }

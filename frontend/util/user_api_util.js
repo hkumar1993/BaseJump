@@ -3,3 +3,9 @@ export const fetchCompanyUsers = id => {
     url: `api/companies/${id}/users`
   })
 }
+
+export const fetchUser = id => {
+  return $.ajax({
+    url: `api/users/${id}`
+  })
+}

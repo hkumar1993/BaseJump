@@ -7,6 +7,7 @@ import TodoListIndexContainer from './todolist/todolist_index_container'
 import TodoListShowContainer from './todolist/todolist_show_container'
 import MessageBoardContainer from './message_board/message_board_container'
 import MessageFormContainer from './message_board/message_form_container'
+import MessageShowContainer from './message_board/message_show_container'
 
 class App extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/:userId/projects/:projectId/todolists/:listId' component={TodoListShowContainer}/>
             <Route exact path='/:userId/projects/:projectId/messages/new' component={MessageFormContainer}/>
+            <Route exact path='/:userId/projects/:projectId/messages/:messageId' component={MessageShowContainer}/>
             <Route exact path='/:userId/projects/:projectId/messages' component={MessageBoardContainer}/>
             <Route exact path='/:userId/projects/:projectId/todolists' component={TodoListIndexContainer}/>
             <Redirect from='/:userId/projects/:projectId/:otherLink' to={`/${this.props.currentUserId}/projects`} />

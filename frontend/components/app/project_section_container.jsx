@@ -5,10 +5,12 @@ import ProjectSection from './project_section'
 const mapStateToProps = (state, ownProps) => {
   const projects = Object.values(state.entities.projects).filter(project => project.projectType === ownProps.projectType)
   const _emptyProject = {name: '', project_type: '', admin_id: ''}
+  const errors = state.errors.project
   return ({
     currentUser: state.session.currentUser,
     company: state.entities.company,
-    projects
+    projects,
+    errors
   })
 }
 

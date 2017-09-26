@@ -14,6 +14,21 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def show
+    begin
+      @user = User.find(params[:id])
+    rescue
+      @errors = ['User not found']
+    end
+
+    if @user
+      render 'api/users/show'
+    else
+      render 'api/users/show', status: 404
+    end
+
+  end
+
   def create
     @user = User.create(user_params)
     if @user.save
