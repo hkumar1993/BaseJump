@@ -22,7 +22,7 @@ class ToolCard extends React.Component {
   toolLink(){
     switch (this.props.tool) {
       case 'messages':
-        return 'message-board'
+        return 'messages'
       case 'todos':
         return 'todolists'
       case 'schedule':

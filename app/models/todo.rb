@@ -6,7 +6,7 @@
 #  title        :string           not null
 #  description  :text
 #  author_id    :integer          not null
-#  done         :boolean          default(FALSE)
+#  done         :boolean          default(FALSE), not null
 #  todo_list_id :integer          not null
 #  due_date     :datetime
 #  created_at   :datetime         not null

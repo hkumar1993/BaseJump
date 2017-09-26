@@ -51,15 +51,25 @@ description: 'This is the companies first todo list',
 author_id: 1,
 project_id: 1)
 
-todo = Todo.create!(title: 'Create company logo',
+Todo.create!(title: 'Create company logo',
   author_id: 1,
   todo_list_id: 1
 )
-todo = Todo.create!(title: 'Create company mission and vision',
+
+Todo.create!(title: 'Create company mission and vision',
   author_id: 1,
   todo_list_id: 1
 )
-todo = Todo.create!(title: 'Third todo',
+
+Todo.create!(title: 'Third todo',
   author_id: 1,
   todo_list_id: 1
+)
+
+Message.create!(
+  title: 'This is our first message',
+  body: '<h1>First Message!</h1>',
+  message_type: 'announcement',
+  author_id: 1,
+  project_id: 1
 )

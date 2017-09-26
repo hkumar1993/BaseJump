@@ -1,14 +1,13 @@
 # == Schema Information
 #
-# Table name: todos
+# Table name: messages
 #
 #  id           :integer          not null, primary key
 #  title        :string           not null
-#  description  :text
+#  body         :text             not null
+#  message_type :string
 #  author_id    :integer          not null
-#  done         :boolean          default(FALSE), not null
-#  todo_list_id :integer          not null
-#  due_date     :datetime
+#  project_id   :integer          not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #
