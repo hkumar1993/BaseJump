@@ -1,4 +1,5 @@
 import React from 'react'
+import UserIconDisplay from '../user_icon_display'
 
 class CommentForm extends React.Component {
   constructor(props){
@@ -19,6 +20,7 @@ class CommentForm extends React.Component {
 
   update(field) {
     return (e) => {
+      $('textarea').removeClass('invalid-input')
       e.preventDefault()
       const comment = Object.assign({}, this.state.comment, { [field]: e.target.value })
       this.setState( { comment })
@@ -29,7 +31,7 @@ class CommentForm extends React.Component {
     e.preventDefault()
     this.props.processComment(this.state.comment).
       then(res => this.clearComment()).
-      fail(res => handleErrors(res))
+      fail(res => this.handleErrors(res))
   }
 
   handleCancel(e) {
@@ -38,14 +40,16 @@ class CommentForm extends React.Component {
   }
 
   handleErrors(res) {
-    console.log(res);
+    $('textarea').addClass('invalid-input')
   }
 
   render() {
     return (
       <div className='comment-form'>
+        <UserIconDisplay user={this.props.currentUser} size={40} />
         <form onSubmit={this.handleSubmit}>
-          <input type='text' onChange={this.update('body')} value={this.state.comment.body} />
+          <textarea onChange={this.update('body')} value={this.state.comment.body}
+            placeholder='Add a comment....'></textarea>
           <input type='submit' className='btn btn-submit'/>
         </form>
       </div>

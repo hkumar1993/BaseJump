@@ -45,6 +45,7 @@ class MessageShow extends React.Component {
     if(!this.props.message || this.state.loading){
       return (<div>Loading ...</div>)
     } else {
+      console.log(this.props);
       return (
         <div className='tool-page'>
           <header>
@@ -58,7 +59,7 @@ class MessageShow extends React.Component {
              > {this.props.message.title}
           </header>
           <div className='main-tool'>
-            { this.props.currentUserId === this.props.messageId ? <Link
+            { this.props.currentUserId == this.props.message.authorId ? <Link
               to={`/${this.props.currentUserId}/projects/${this.props.projectId}/messages/${this.props.messageId}/edit`}
               className='edit btn btn-normal'>Edit</Link> : <span></span> }
             <div className='message-details'>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import UserIconDisplay from '../user_icon_display'
 
 class MessageBoardItem extends React.Component{
 
@@ -19,9 +20,7 @@ class MessageBoardItem extends React.Component{
     return (
       <Link to={`/${props.params.userId}/projects/${props.params.projectId}/messages/${props.message.id}`}>
         <li className='message-board-item'>
-          <div className='author-image'>
-            <span className='btn btn-user'>{props.author.name.slice(0,1)}</span>
-          </div>
+          <UserIconDisplay user={this.props.author} size={50}/>
           <div className='message-details'>
             <h1>{props.message.title}</h1>
             <span>{props.message.body}</span>

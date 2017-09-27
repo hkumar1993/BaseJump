@@ -20,7 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const processMessage = ownProps.match.params.projectId ? updateMessage : createMessage
+  const processMessage = ownProps.match.params.messageId ? updateMessage : createMessage
   return {
     processMessage: message => dispatch(processMessage(message)),
     fetchMessage: message => dispatch(fetchMessage(message)),

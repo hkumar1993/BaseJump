@@ -12,4 +12,7 @@
 #
 
 class Comment < ApplicationRecord
+  validates :body, length: { minimum: 1 }
+  validates :body, :author_id, :parent_type, :parent_id, presence: true
+
 end
