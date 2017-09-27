@@ -21,13 +21,14 @@ class CommentsIndex extends React.Component {
       parent_type: this.props.parentType
     }
     return (
-      <div>
+      <div className='comments-container'>
         <ul>
           {
             Object.values(this.props.comments).map(comment => (
                 <CommentsIndexItem
                   user={this.props.users[comment.authorId]}
-                  comment={comment}/>
+                  comment={comment}
+                  key={comment.id}/>
               )
             )
 
