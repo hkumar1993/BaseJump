@@ -11,7 +11,7 @@ username: 'johndoe',
 password: 'password',
 company: "John's Dough Company",
 email: 'john@doe.com',
-avatar_url: Faker::Placeholdit.image("100x100", 'jpg', '009920', 'fff', 'J')
+avatar_url: Faker::Placeholdit.image("500x500", 'jpg', '009920', 'fff', 'J')
 )
 
 jane = User.create!(name: 'Jane Doe',
@@ -19,7 +19,7 @@ username: 'janedoe',
 password: 'password',
 company: "John's Dough Company",
 email: 'jane@doe.com',
-avatar_url: Faker::Placeholdit.image("100x100", 'jpg', 'd10000', 'fff', 'J')
+avatar_url: Faker::Placeholdit.image("500x500", 'jpg', 'd10000', 'fff', 'J')
 )
 
 8.times do
@@ -28,7 +28,7 @@ avatar_url: Faker::Placeholdit.image("100x100", 'jpg', 'd10000', 'fff', 'J')
   username = Faker::Internet.user_name(name, %w(. _ -))
   password = Faker::Internet.password(8)
   color = Faker::Color.hex_color
-  img_url = Faker::Placeholdit.image("100x100", 'jpg', color[1..-1], 'fff', name[0])
+  img_url = Faker::Placeholdit.image("500x500", 'jpg', color[1..-1], 'fff', name[0])
   User.create!(name: name,
   username: username,
   password: password,

@@ -100,7 +100,7 @@ class User < ApplicationRecord
   end
 
   def ensure_avatar
-    img_url = Faker::Placeholdit.image("100x100", 'jpg', Faker::Color.hex_color[1..-1], 'fff', name[0])
+    img_url = Faker::Placeholdit.image("500x500", 'jpg', Faker::Color.hex_color[1..-1], 'fff', name[0])
     self.avatar_url ||= img_url
   end
 

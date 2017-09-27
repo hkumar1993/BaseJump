@@ -49,7 +49,6 @@ class ProjectShow extends React.Component {
           </div>
         )
       } else {
-        debugger
         return (
           <Redirect to='/' />
         )
