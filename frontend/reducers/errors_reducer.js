@@ -5,6 +5,7 @@ import ProjectErrorsReducer from './project_errors_reducer'
 import TodoListErrorsReducer from './todolist_errors_reducer'
 import TodoErrorsReducer from './todo_errors_reducer'
 import MessageErrorsReducer from './message_errors_reducer'
+import CommentErrorsReducer from './comment_errors_reducer'
 
 export default combineReducers({
   session: SessionErrorsReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   project: ProjectErrorsReducer,
   todolist: TodoListErrorsReducer,
   todo: TodoErrorsReducer,
-  message: MessageErrorsReducer
+  message: MessageErrorsReducer,
+  comment: CommentErrorsReducer
 })

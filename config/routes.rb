@@ -18,13 +18,19 @@ Rails.application.routes.draw do
 
     resources :todolists, only: [:show, :create, :update, :destroy] do
       resources :todos, only: [:index]
+      resources :comments, only: [:index]
     end
 
     resources :todos, only: [:show, :create, :update, :destroy] do
       patch :toggle
     end
 
-    resources :messages, only: [:show, :create, :update, :destroy]
+    resources :messages, only: [:show, :create, :update, :destroy] do
+      resources :comments, only: [:index]
+    end
+
+    resources :comments, only: [:create, :update, :destroy]
+
 
   end
 end

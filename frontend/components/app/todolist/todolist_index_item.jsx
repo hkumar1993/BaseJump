@@ -68,6 +68,7 @@ class TodoListIndexItem extends React.Component {
                   {todoList.title}</Link>) : ( <span>{todoList.title}</span> )
             }
             </h1>
+            <h2>{todoList.description}</h2>
           <ul className='todos pending'>
             { Object.keys(pendingTodos).map(id => <TodoItem key={id}
               todo={todos[id]} toggleTodo={toggleTodo}/>)}

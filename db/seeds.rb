@@ -10,13 +10,33 @@ john = User.create!(name: 'John Doe',
 username: 'johndoe',
 password: 'password',
 company: "John's Dough Company",
-email: 'john@doe.com')
+email: 'john@doe.com',
+avatar_url: Faker::Placeholdit.image("100x100", 'jpg', '009920', 'fff', 'J')
+)
 
 jane = User.create!(name: 'Jane Doe',
 username: 'janedoe',
 password: 'password',
 company: "John's Dough Company",
-email: 'jane@doe.com')
+email: 'jane@doe.com',
+avatar_url: Faker::Placeholdit.image("100x100", 'jpg', 'd10000', 'fff', 'J')
+)
+
+8.times do
+  name = Faker::HowIMetYourMother.character
+  email = Faker::Internet.free_email(name)
+  username = Faker::Internet.user_name(name, %w(. _ -))
+  password = Faker::Internet.password(8)
+  color = Faker::Color.hex_color
+  img_url = Faker::Placeholdit.image("100x100", 'jpg', color[1..-1], 'fff', name[0])
+  User.create!(name: name,
+  username: username,
+  password: password,
+  company: "John's Dough Company",
+  email: email,
+  avatar_url: img_url
+  )
+end
 
 hq = Project.create!(name: 'Company HQ',
 description: 'Company-wide announcements and stuff everyone needs to know',
@@ -39,10 +59,16 @@ it = Project.create!(name: 'Create IT Department',
   project_type: 'project')
 
 
-(1..2).each do |id|
+(1..10).each do |id|
   UserProject.create!(user_id: id, project_id: hq.id)
-  UserProject.create!(user_id: id, project_id: hr.id)
-  UserProject.create!(user_id: id, project_id: finance.id)
+  if id == 1
+    UserProject.create!(user_id: id, project_id: hr.id)
+    UserProject.create!(user_id: id, project_id: finance.id)
+  elsif id % 2 == 0
+    UserProject.create!(user_id: id, project_id: hr.id)
+  else
+    UserProject.create!(user_id: id, project_id: finance.id)
+  end
   UserProject.create!(user_id: id, project_id: it.id)
 end
 
@@ -61,14 +87,30 @@ Todo.create!(title: 'Create company mission and vision',
   todo_list_id: 1
 )
 
-Todo.create!(title: 'Third todo',
-  author_id: 1,
-  todo_list_id: 1
+todo_list = TodoList.create!(title: 'Get Furniture',
+description: "We're going to Ikea",
+author_id: 3,
+project_id: 1)
+
+
+Todo.create!(title: 'Buy tables',
+  author_id: rand(10)+1,
+  todo_list_id: 2
+)
+
+Todo.create!(title: 'Buy chairs',
+  author_id: rand(10)+1,
+  todo_list_id: 2
+)
+
+Todo.create!(title: 'Buy monitors',
+  author_id: rand(10)+1,
+  todo_list_id: 2
 )
 
 Message.create!(
   title: 'This is our first message',
-  body: '<h1>First Message!</h1>',
+  body: 'First Message!',
   message_type: 'announcement',
   author_id: 1,
   project_id: 1

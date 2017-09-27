@@ -22,10 +22,23 @@
     border-radius: 10px;
     box-shadow: 0px 2px 5px transparentize($landing-dark, 0.8);
     margin-bottom: 50px;
+    position: relative;
+
+    .edit.btn.btn-normal{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      border: 1px solid $dark-gray;
+    }
+
     h1{
       font-size: 25px;
-      margin: 10px 0 30px 0;
+      margin: 10px 0;
       font-weight: 700;
+    }
+
+    h2{
+      margin: 10px 0;
     }
   }
 
@@ -50,6 +63,7 @@
     .todolist-item{
       display: block;
       text-align: left;
+      margin-top: 40px;
 
       ul{
         margin: 20px 0;

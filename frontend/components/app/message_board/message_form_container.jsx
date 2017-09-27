@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import MessageForm from './message_form'
-import { createMessage } from '../../../actions/message_actions'
+import { createMessage, fetchMessage, updateMessage } from '../../../actions/message_actions'
 import { fetchProject } from '../../../actions/project_actions'
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,17 +9,21 @@ const mapStateToProps = (state, ownProps) => {
   const projectId = ownProps.match.params.projectId
   const project = state.entities.projects[projectId]
   const errors = state.errors.message
+  const params = ownProps.match.params
   return {
     currentUser,
     projectId,
     project,
-    errors
+    errors,
+    params
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  const processMessage = ownProps.match.params.projectId ? updateMessage : createMessage
   return {
-    createMessage: message => dispatch(createMessage(message)),
+    processMessage: message => dispatch(processMessage(message)),
+    fetchMessage: message => dispatch(fetchMessage(message)),
     fetchProject: id => dispatch(fetchProject(id)),
   }
 }

@@ -1,7 +1,14 @@
 import * as APIUtil from '../util/session_api_util';
+import { fetchUser } from '../util/user_api_util'
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER'
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS'
+
+export const fetchCurrentUser = id => dispatch => {
+  return fetchUser(id).
+  then(res => dispatch(receiveCurrentUser(res.user))).
+  fail(res => dispatch(receiveErrors(res.responseJSON.errors)))
+}
 
 export const login = user => dispatch => {
   return APIUtil.login(user).

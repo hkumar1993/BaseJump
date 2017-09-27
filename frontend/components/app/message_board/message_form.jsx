@@ -8,6 +8,7 @@ class MessageForm extends React.Component {
     this.state = {
       loading: false,
       message: {
+        id: '',
         title: '',
         body: '',
         message_type: '',
@@ -25,7 +26,16 @@ class MessageForm extends React.Component {
 
   componentDidMount(){
     this.setState({ loading: true })
-    this.props.fetchProject(this.props.projectId)
+    this.props.fetchProject(this.props.projectId).
+      then(res => {
+        if(this.props.params.messageId){
+          this.props.fetchMessage(this.props.params.messageId).
+          then( res => this.setState({ message: Object.assign({}, res.message, {
+            author_id: res.message.authorId,
+            project_id: res.message.projectId
+          })}))
+        }
+      })
   }
 
   componentWillReceiveProps(newProps){
@@ -44,7 +54,7 @@ class MessageForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    this.props.createMessage(this.state.message).
+    this.props.processMessage(this.state.message).
       then(res => this.props.history.push(`/${this.props.currentUser.id}/projects/${this.props.project.id}/messages`)).
       fail(res => this.handleErrors(res.responseJSON.errors))
   }

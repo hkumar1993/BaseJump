@@ -1,3 +1,4 @@
+require 'faker'
 # == Schema Information
 #
 # Table name: users
@@ -22,6 +23,7 @@ class User < ApplicationRecord
   validates :name, :username, :email, :company_id, :password_digest, :session_token, presence: true
   validates :username, :session_token, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true}
+  before_validation :ensure_session_token, :ensure_avatar
 
   belongs_to :business,
     primary_key: :id,
@@ -95,6 +97,11 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= reset_session_token!
+  end
+
+  def ensure_avatar
+    img_url = Faker::Placeholdit.image("100x100", 'jpg', Faker::Color.hex_color[1..-1], 'fff', name[0])
+    self.avatar_url ||= img_url
   end
 
 end

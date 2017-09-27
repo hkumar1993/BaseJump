@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import MessageBoard from './message_board'
 import { fetchProject } from '../../../actions/project_actions'
 import { fetchProjectMessages } from '../../../actions/message_actions'
-import { fetchCompanyUsers } from '../../../actions/user_actions'
+import { fetchCompanyUsers, fetchUser } from '../../../actions/user_actions'
 
 const mapStateToProps = (state, ownProps) => {
   const project = state.entities.projects[ownProps.match.params.projectId]
@@ -23,6 +23,7 @@ const mapDispatchToProps = dispatch => {
     fetchProject: id => dispatch(fetchProject(id)),
     fetchProjectMessages: id => dispatch(fetchProjectMessages(id)),
     fetchCompanyUsers: id => dispatch(fetchCompanyUsers(id)),
+    fetchUser: id => dispatch(fetchUser(id)),
   }
 }
 

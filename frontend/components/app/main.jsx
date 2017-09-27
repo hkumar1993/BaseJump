@@ -33,12 +33,13 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/:userId/projects/:projectId/todolists/:listId' component={TodoListShowContainer}/>
             <Route exact path='/:userId/projects/:projectId/messages/new' component={MessageFormContainer}/>
+            <Route exact path='/:userId/projects/:projectId/messages/:messageId/edit' component={MessageFormContainer}/>
             <Route exact path='/:userId/projects/:projectId/messages/:messageId' component={MessageShowContainer}/>
             <Route exact path='/:userId/projects/:projectId/messages' component={MessageBoardContainer}/>
             <Route exact path='/:userId/projects/:projectId/todolists' component={TodoListIndexContainer}/>
             <Redirect from='/:userId/projects/:projectId/:otherLink' to={`/${this.props.currentUserId}/projects`} />
             <Route exact path='/:userId/projects/:projectId' component={ProjectShowContainer}/>
-            <Route path='/:userId/projects' component={PageContentContainer}/>
+            <Route exact path='/:userId/projects' component={PageContentContainer}/>
           </Switch>
         </div>
       )

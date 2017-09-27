@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import titleize from 'titleize'
+import CommentsContainer from '../comments/comments_container'
 
 class MessageShow extends React.Component {
   constructor(props) {
@@ -41,11 +42,9 @@ class MessageShow extends React.Component {
   }
 
   render(){
-    console.log(this.state);
     if(!this.props.message || this.state.loading){
       return (<div>Loading ...</div>)
     } else {
-      console.log('Type!!!',this.props.message.messageType);
       return (
         <div className='tool-page'>
           <header>
@@ -59,18 +58,28 @@ class MessageShow extends React.Component {
              > {this.props.message.title}
           </header>
           <div className='main-tool'>
-            <div>
-             { this.props.message.messageType === '' || this.props.message.messageType === 'something' ? 'Message' : `${titleize(this.props.message.messageType)}`}
+            { this.props.currentUserId === this.props.messageId ? <Link
+              to={`/${this.props.currentUserId}/projects/${this.props.projectId}/messages/${this.props.messageId}/edit`}
+              className='edit btn btn-normal'>Edit</Link> : <span></span> }
+            <div className='message-details'>
+             <h3>{ this.props.message.messageType === '' || this.props.message.messageType === 'something' ? 'Message' : `${titleize(this.props.message.messageType)}`}
              {` by `}
              { this.state.author.name }
              {` on `}
-             { this.state.createdAt }
+             { this.state.createdAt }</h3>
             </div>
-            <div>
+            <div className='message-show'>
               <h1>{this.props.message.title}</h1>
               <p>{this.props.message.body}</p>
+              <h5 className='posting'>
+                {
+                  this.state.createdAt === this.state.updatedAt ?
+                    `Posted on ${this.state.createdAt}` : `Updated on ${this.state.updatedAt}`
+                }
+              </h5>
             </div>
           </div>
+          <CommentsContainer />
         </div>
       )
     }

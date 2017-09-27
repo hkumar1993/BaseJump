@@ -42,7 +42,7 @@ class Api::MessagesController < ApplicationController
     end
 
     if @message
-      if @message.upadte(message_params)
+      if @message.update(message_params)
         render 'api/messages/show'
       else
         @errors = @message.errors.full_messages

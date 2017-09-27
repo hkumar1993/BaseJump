@@ -6,38 +6,41 @@ import { Redirect } from 'react-router-dom'
 class ProjectShow extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { project: {name: '', description: '', adminId: '', teamMembers: []}, loading: false, users: {} }
+    this.state = { project: {name: '', description: '', adminId: '', teamMembers: []}, loading: true, users: {} }
   }
 
   componentDidMount(){
     this.setState({loading: true})
-    this.props.fetchProject(this.props.match.params.projectId).
-      then(Boolean(this.props.users) ? this.props.fetchCompanyUsers(this.props.currentUser.companyId) : '')
+    this.props.fetchUserProjects(this.props.currentUser.id).
+    then(res => this.props.fetchProject(this.props.match.params.projectId)).
+    then(res => this.props.fetchCompanyUsers(this.props.currentUser.companyId))
   }
 
   componentWillReceiveProps(newprops){
-    if(this.props.projectIds.includes(newprops.match.params.projectId)){
-    this.setState({users: newprops.users})
-    this.setState({project: newprops.project})
-    setTimeout(() => this.setState({loading: false}), 500);}
+    console.log('NEW PROPS!!');
+    this.setState({users: newprops.users, project: newprops.project})
+    setTimeout(() => this.setState({loading: false}), 500);
   }
 
   render(){
     const users = this.state.users
     const tools = ['messages','todos','schedule']
     const loading = this.state.loading
-    if(this.props.projectIds.includes(this.props.currentProject)){
-      if(loading) {
-        return (
-          <div>Loading...</div>
-        )
-      }
-      else {
+    console.log(this.props.match);
+    console.log('proj ids', this.props.projectIds);
+    console.log('cur proj', this.props.currentProject);
+    console.log(this.props.projectIds.includes(this.props.currentProject));
+    if(loading) {
+      return (
+        <div>Loading...</div>
+      )
+    } else {
+      if(this.props.projectIds.includes(this.props.currentProject)){
         return (
           <div className='project-page'>
             <h1>{this.state.project.name}</h1>
             <h2>{this.state.project.description}</h2>
-            <UserList users={Object.values(users)} />
+            <UserList users={Object.values(users)} teamMembers = {this.state.project.teamMembers} />
             <ul className='tools'>
               {
                 tools.map(tool => <ToolCardContainer tool={tool} key={tool}/>)
@@ -45,12 +48,12 @@ class ProjectShow extends React.Component {
             </ul>
           </div>
         )
+      } else {
+        debugger
+        return (
+          <Redirect to='/' />
+        )
       }
-    }
-    else {
-      return (
-        <Redirect to='/' />
-      )
     }
   }
 }

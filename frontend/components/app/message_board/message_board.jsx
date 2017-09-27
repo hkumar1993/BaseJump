@@ -13,8 +13,8 @@ class MessageBoard extends React.Component {
     console.log('mounting props',this.props);
     this.setState({ loading: true})
     this.props.fetchCompanyUsers(this.props.currentUser.companyId).
-      then(this.props.fetchProject(this.props.match.params.projectId)).
-      then(this.props.fetchProjectMessages(this.props.match.params.projectId))
+      then(res => this.props.fetchProject(this.props.match.params.projectId)).
+      then(res => this.props.fetchProjectMessages(this.props.match.params.projectId))
   }
 
   componentWillReceiveProps(){
@@ -44,6 +44,7 @@ class MessageBoard extends React.Component {
             <ul className='message-board'>
               {
                 this.props.messages.map(message => (<MessageBoardItem message={message}
+                  fetchUser={this.props.fetchUser}
                   author={this.props.users[message.authorId]} key={message.id}
                   params={this.props.match.params}/>))
               }

@@ -23,7 +23,7 @@ class ProjectSection extends React.Component {
   }
 
   componentDidMount(){
-    this.setState({loading: true})
+    // this.setState({loading: true})
     const project = {
       name: '',
       project_type: this.props.projectType,

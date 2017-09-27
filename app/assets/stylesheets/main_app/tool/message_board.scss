@@ -33,3 +33,21 @@
     }
   }
 }
+
+.tool-page{
+  .message-details{
+    h3{
+      font-size: 15px;
+    }
+  }
+  .message-show{
+    padding: 20px 50px;
+    text-align: left;
+
+    .posting{
+      font-size: 10px;
+      margin-top: 50px;
+      color: $basecamp-dark-beige;
+    }
+  }
+}

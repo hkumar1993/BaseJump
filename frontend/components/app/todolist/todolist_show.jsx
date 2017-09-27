@@ -1,6 +1,8 @@
 import React from 'react'
 import TodoListIndexItem from './todolist_index_item'
 import { Link } from 'react-router-dom'
+import CommentsContainer from '../comments/comments_container'
+
 class TodoListShow extends React.Component {
   constructor(props) {
     super(props)
@@ -56,7 +58,7 @@ class TodoListShow extends React.Component {
                 currentUser={ this.props.currentUser } />
             </ul>
           </div>
-
+          <CommentsContainer />
         </div>
       )
     }

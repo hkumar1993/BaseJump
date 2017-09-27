@@ -1,7 +1,6 @@
 import { RECEIVE_MESSAGES, RECEIVE_MESSAGE, REMOVE_MESSAGE } from '../actions/message_actions'
 
 const MessagesReducer = (state = {}, action) => {
-  console.log('Action', action);
   Object.freeze(state)
   switch (action.type) {
     case RECEIVE_MESSAGES:
