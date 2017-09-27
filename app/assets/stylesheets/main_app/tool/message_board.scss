@@ -12,7 +12,9 @@
   max-height: 80px;
   overflow: hidden;
 
-
+  div:first-child{
+    min-width: 50px;
+  }
   div:last-child{
     padding: 0 20px;
   }
@@ -26,6 +28,7 @@
 
 
   .message-details{
+    align-self: flex-start;
     text-align: left;
     h1{
       font-size: 20px;

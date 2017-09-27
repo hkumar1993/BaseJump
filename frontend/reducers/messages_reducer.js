@@ -4,7 +4,11 @@ const MessagesReducer = (state = {}, action) => {
   Object.freeze(state)
   switch (action.type) {
     case RECEIVE_MESSAGES:
-      return action.messages
+      if(Boolean(action.messages)){
+        return action.messages
+      } else {
+        return {}
+      }
     case RECEIVE_MESSAGE:
       return Object.assign({}, state, { [action.message.id]: action.message })
     case REMOVE_MESSAGE:

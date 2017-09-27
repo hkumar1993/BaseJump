@@ -1,13 +1,13 @@
 class Api::CommentsController < ApplicationController
   def index
     if params[:message_id]
-      @comments = Comment.where('parent_type = ?', 'message')
+      @comments = Comment.where('parent_type = ? AND parent_id = ?', 'message', params[:message_id])
     elsif params[:todolist_id]
-      @comments = Comment.where('parent_type = ?', 'todolist')
+      @comments = Comment.where('parent_type = ?  AND parent_id = ?', 'todolist', params[:todolist_id])
     else
       @errors = ['Could not find comments']
     end
-
+    p @comments
     if @comments
       render 'api/comments/index'
     else

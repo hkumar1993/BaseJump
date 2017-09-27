@@ -1,4 +1,4 @@
-unless @errors
+if @comment
   json.comment do
     json.extract! @comment, :id, :body, :author_id, :parent_type, :parent_id, :created_at, :updated_at
   end

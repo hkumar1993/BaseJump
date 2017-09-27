@@ -36,6 +36,7 @@ gem 'jquery-rails'
 gem 'figaro'
 gem 'cloudinary'
 gem 'rails_12factor'
+gem 'seed_dump'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
