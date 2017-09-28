@@ -26,7 +26,7 @@ class ToolCard extends React.Component {
       case 'todos':
         return 'todolists'
       case 'schedule':
-        return 'schedule'
+        return 'events'
     }
   }
 

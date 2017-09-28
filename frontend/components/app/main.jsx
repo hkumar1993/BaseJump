@@ -8,6 +8,9 @@ import TodoListShowContainer from './todolist/todolist_show_container'
 import MessageBoardContainer from './message_board/message_board_container'
 import MessageFormContainer from './message_board/message_form_container'
 import MessageShowContainer from './message_board/message_show_container'
+import EventsIndexContainer from './schedule/events_index_container'
+import EventFormContainer from './schedule/event_form_container'
+import EventShowContainer from './schedule/event_show_container'
 
 class App extends React.Component {
   constructor(props) {
@@ -31,6 +34,10 @@ class App extends React.Component {
         <div className='main-app'>
           <NavBarContainer />
           <Switch>
+            <Route exact path='/:userId/projects/:projectId/events/new' component={EventFormContainer}/>
+            <Route exact path='/:userId/projects/:projectId/events/:eventId/edit' component={EventFormContainer}/>
+            <Route exact path='/:userId/projects/:projectId/events/:eventId' component={EventShowContainer}/>
+            <Route exact path='/:userId/projects/:projectId/events' component={EventsIndexContainer}/>
             <Route exact path='/:userId/projects/:projectId/todolists/:listId' component={TodoListShowContainer}/>
             <Route exact path='/:userId/projects/:projectId/messages/new' component={MessageFormContainer}/>
             <Route exact path='/:userId/projects/:projectId/messages/:messageId/edit' component={MessageFormContainer}/>

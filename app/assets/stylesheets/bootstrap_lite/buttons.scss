@@ -40,6 +40,12 @@ a.btn.btn-submit:hover, input.btn.btn-submit:hover {
   background-color: $submit-dark-green;
 }
 
+.event.btn-submit {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 a.btn.btn-cancel, input.btn.btn-cancel {
   color: white;
   padding: 5px 15px;

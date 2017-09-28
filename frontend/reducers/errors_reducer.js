@@ -6,6 +6,7 @@ import TodoListErrorsReducer from './todolist_errors_reducer'
 import TodoErrorsReducer from './todo_errors_reducer'
 import MessageErrorsReducer from './message_errors_reducer'
 import CommentErrorsReducer from './comment_errors_reducer'
+import EventErrorsReducer from './event_errors_reducer'
 
 export default combineReducers({
   session: SessionErrorsReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   todolist: TodoListErrorsReducer,
   todo: TodoErrorsReducer,
   message: MessageErrorsReducer,
-  comment: CommentErrorsReducer
+  comment: CommentErrorsReducer,
+  event: EventErrorsReducer
 })

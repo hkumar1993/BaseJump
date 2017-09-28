@@ -7,6 +7,7 @@ import TodoListsReducer from './todolists_reducer'
 import TodosReducer from './todos_reducer'
 import MessagesReducer from './messages_reducer'
 import CommentsReducer from './comments_reducer'
+import EventsReducer from './events_reducer'
 
 export default combineReducers({
   comments: CommentsReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
   todoLists: TodoListsReducer,
   todos: TodosReducer,
   messages: MessagesReducer,
+  events: EventsReducer
 })

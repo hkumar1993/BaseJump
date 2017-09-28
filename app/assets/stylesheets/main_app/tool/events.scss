@@ -1,0 +1,39 @@
+.event-list{
+  padding: 10px 60px;
+
+  .event-item{
+
+    border-bottom: 1px solid transparentize($landing-dark, 0.8);
+    display: flex;
+
+    div{
+      margin: 0 10px;
+
+      h1{
+        font-size: 18px;
+        font-weight: 700;
+      }
+    }
+
+    div:first-child{
+      width: 130px;
+    }
+
+    div:last-child{
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      width: 475px;
+    }
+
+    .events{
+      li{
+        a{
+          text-decoration: none;
+          color: $landing-dark;
+        }
+      }
+    }
+
+  }
+}

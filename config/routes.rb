@@ -14,10 +14,15 @@ Rails.application.routes.draw do
       resources :todolists, only: [:index]
       resources :todos, only: [:index]
       resources :messages, only: [:index]
+      resources :events, only: [:index]
     end
 
     resources :todolists, only: [:show, :create, :update, :destroy] do
       resources :todos, only: [:index]
+      resources :comments, only: [:index]
+    end
+
+    resources :events, only: [:show, :create, :update, :destroy] do
       resources :comments, only: [:index]
     end
 
