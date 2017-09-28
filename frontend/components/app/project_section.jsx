@@ -53,7 +53,11 @@ class ProjectSection extends React.Component {
 
   companyLogo(){
     if(this.props.projectType == 'company'){
-      return <li className='card logo'><img className='company-logo' src='http://cleartheairchicago.com/files/2014/06/logo-placeholder.jpg'/></li>
+      return (
+          <li className='card logo'>
+            <img className='company-logo' src={this.props.company.imageUrl}/>
+          </li>
+        )
     }
   }
 

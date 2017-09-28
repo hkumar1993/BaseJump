@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Dropdown from 'react-simple-dropdown'
 import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'
+import UserIconDisplay from './user_icon_display'
+
 class NavBar extends React.Component {
   constructor(props) {
     super(props)
@@ -23,8 +25,8 @@ class NavBar extends React.Component {
         </Link>
 
         <Dropdown>
-          <DropdownTrigger className='btn btn-user'>
-              {this.props.currentUser.name.slice(0,1)}
+          <DropdownTrigger>
+              <UserIconDisplay user={this.props.currentUser} size={30} />
           </DropdownTrigger>
           <DropdownContent>
             <ul id='user-funcs' className='user-funcs-dropdown'>
