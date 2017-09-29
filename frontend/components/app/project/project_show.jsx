@@ -2,6 +2,7 @@ import React from 'react'
 import UserList from './user_list'
 import ToolCardContainer from './tool_card_container'
 import { Redirect } from 'react-router-dom'
+import Loading from '../loader'
 
 class ProjectShow extends React.Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class ProjectShow extends React.Component {
   componentWillReceiveProps(newprops){
     console.log('NEW PROPS!!');
     this.setState({users: newprops.users, project: newprops.project})
-    setTimeout(() => this.setState({loading: false}), 500);
+    setTimeout(() => this.setState({loading: false}), 750);
   }
 
   render(){
@@ -32,7 +33,7 @@ class ProjectShow extends React.Component {
     console.log(this.props.projectIds.includes(this.props.currentProject));
     if(loading) {
       return (
-        <div>Loading...</div>
+        <Loading />
       )
     } else {
       if(this.props.projectIds.includes(this.props.currentProject)){

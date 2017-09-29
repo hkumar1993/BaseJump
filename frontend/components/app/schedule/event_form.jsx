@@ -5,7 +5,7 @@ import TimePicker from 'rc-time-picker'
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'rc-time-picker/assets/index.css';
-
+import Loading from '../loader'
 class EventForm extends React.Component {
   constructor(props) {
     super(props)
@@ -68,7 +68,7 @@ class EventForm extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    setTimeout(() => this.setState({ loading: false }), 500)
+    setTimeout(() => this.setState({ loading: false }), 750)
   }
 
   handleDateChange(field) {
@@ -130,7 +130,7 @@ class EventForm extends React.Component {
     console.log('Moment?', this.state.startDate);
     if(this.state.loading && !this.props.project){
       return (
-        <div>Loading...</div>
+        <Loading />
       )
     } else {
       console.log(this.state);

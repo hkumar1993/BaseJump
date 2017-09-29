@@ -1,6 +1,6 @@
 import React from 'react'
 import ProjectSectionContainer from './project_section_container'
-
+import Loading from './loader'
 class PageContent extends React.Component {
   constructor(props) {
     super(props)
@@ -16,13 +16,13 @@ class PageContent extends React.Component {
 
   componentWillReceiveProps(newProps){
     console.log('NEW PROPS!!');
-    setTimeout(() => this.setState({loading: false}), 500)
+    setTimeout(() => this.setState({loading: false}), 750)
   }
 
   render(){
     if (this.state.loading){
       return (
-        <div>Loading....</div>
+      <Loading />
       )
     } else {
       return (

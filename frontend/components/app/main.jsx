@@ -11,6 +11,7 @@ import MessageShowContainer from './message_board/message_show_container'
 import EventsIndexContainer from './schedule/events_index_container'
 import EventFormContainer from './schedule/event_form_container'
 import EventShowContainer from './schedule/event_show_container'
+import Loading from './loader'
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class App extends React.Component {
 
   componentDidMount(){
     // this.setState({loading: true})
-    // setTimeout(() => this.setState({loading: false}), 500)
+    // setTimeout(() => this.setState({loading: false}), 750)
   }
 
   componentWillReceiveProps(){
@@ -28,7 +29,7 @@ class App extends React.Component {
 
   render(){
     if(this.state.loading){
-      return ( <div>Loading... </div>)
+      return ( <Loading />)
     } else {
       return (
         <div className='main-app'>

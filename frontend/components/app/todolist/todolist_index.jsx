@@ -2,6 +2,7 @@ import React from 'react'
 import TodoListIndexItem from './todolist_index_item'
 import TodoListForm from './todolist_form'
 import { Link } from 'react-router-dom'
+import Loading from '../loader'
 
 class TodoListIndex extends React.Component {
   constructor(props) {
@@ -14,8 +15,8 @@ class TodoListIndex extends React.Component {
     console.log('Coponent Mounted!');
     this.setState({loading: true})
     this.props.fetchProject(this.props.projectId).
-      then(this.props.fetchProjectTodoLists(this.props.projectId)).
-      then(this.props.fetchProjectTodos(this.props.projectId))
+      then(res => this.props.fetchProjectTodoLists(this.props.projectId)).
+      then(res => this.props.fetchProjectTodos(this.props.projectId))
   }
 
   componentWillReceiveProps(newProps){
@@ -25,7 +26,7 @@ class TodoListIndex extends React.Component {
         then(this.props.fetchProjectTodoLists(this.props.projectId)).
         then(this.props.fetchProjectTodos(this.props.projectId))
     }
-    setTimeout(() => this.setState({loading: false}), 500)
+    setTimeout(() => this.setState({loading: false}), 750)
   }
 
   toggleHide(){
@@ -40,7 +41,7 @@ class TodoListIndex extends React.Component {
 
     if(this.state.loading || !Boolean(this.props.project)){
       return (
-        <div>Loading...</div>
+        <Loading />
       )
     } else {
       return (

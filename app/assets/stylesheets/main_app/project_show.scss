@@ -37,7 +37,7 @@
       text-decoration: none;
       color: inherit;
     }
-    li{
+    li.tool-card{
       background-color: white;
       margin: 10px;
       padding: 20px 10px;
@@ -45,6 +45,16 @@
       height: 260px;
       border-radius: 5px;
       box-shadow: 0px 2px 5px transparentize(black, 0.8);
+      li{
+        font-weight: 700;
+        margin: 40px 0;
+      }
+      li::before{
+        content: ' " '
+      }
+      li::after{
+        content: ' " '
+      }
 
       h2{
         position: relative;

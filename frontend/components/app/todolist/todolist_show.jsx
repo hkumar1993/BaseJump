@@ -2,6 +2,7 @@ import React from 'react'
 import TodoListIndexItem from './todolist_index_item'
 import { Link } from 'react-router-dom'
 import CommentsContainer from '../comments/comments_container'
+import Loading from '../loader'
 
 class TodoListShow extends React.Component {
   constructor(props) {
@@ -27,12 +28,12 @@ class TodoListShow extends React.Component {
         then(newProps.fetchTodoList(id)).
         then(this.props.fetchProjectTodos(newProps.params.projectId))
     }
-    setTimeout(() => this.setState({loading: false}), 500)
+    setTimeout(() => this.setState({loading: false}), 750)
   }
 
   render(){
     if(!Boolean(this.props.todoList) || this.state.loading){
-      return (<div>Loading ...</div>)
+      return (<Loading />)
     } else {
       console.log(this.props);
       return (

@@ -4,6 +4,7 @@ import EventIndexItem from './event_index_item'
 import moment from 'moment'
 import Calendar from 'react-calendar'
 import 'react-calendar/build/Calendar.less'
+import Loading from '../loader'
 
 class EventsIndex extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class EventsIndex extends React.Component {
     if(Object.keys(this.props.events).length > 0){
       this.filterDates()
     }
-    setTimeout( () => this.setState({loading: false}), 500)
+    setTimeout( () => this.setState({loading: false}), 750)
   }
 
   filterDates(date){
@@ -77,6 +78,17 @@ class EventsIndex extends React.Component {
 
   render(){
     if( this.props.project && !this.state.loading ){
+      const todays_events = []
+      const upcoming_events = []
+      this.state.events.filter(event => {
+        if (Date.parse(this.state.selectedDate) >= Date.parse(event.startDate) && Date.parse(this.state.selectedDate) <= Date.parse(event.endDate)){
+          todays_events.push(event)
+        } else {
+          upcoming_events.push(event)
+        }
+      })
+      console.log('Happening today',todays_events);
+      console.log('Upcoming', upcoming_events);
       return (
         <div className='tool-page'>
           <header>
@@ -98,9 +110,21 @@ class EventsIndex extends React.Component {
               className='btn event btn-submit'>
               Add an event
             </Link>
+            <h2 className='event-header'>Todays Events</h2>
             <ul className='event-list'>
               {
-                this.state.events.map(event =>
+                todays_events.map(event =>
+                  <EventIndexItem
+                    event={event}
+                    key={event.id}
+                    currentUser={this.props.currentUser}
+                    project={this.props.project} />)
+              }
+            </ul>
+            <h2 className='event-header'>Upcoming Events</h2>
+            <ul className='event-list'>
+              {
+                upcoming_events.map(event =>
                   <EventIndexItem
                     event={event}
                     key={event.id}
@@ -113,7 +137,7 @@ class EventsIndex extends React.Component {
       )
     } else {
       return (
-        <div>Loading....</div>
+        <Loading />
       )
     }
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import MessageBoardItem from './message_board_item'
-
+import Loading from '../loader'
 class MessageBoard extends React.Component {
   constructor(props){
     super(props)
@@ -18,13 +18,13 @@ class MessageBoard extends React.Component {
   }
 
   componentWillReceiveProps(){
-    setTimeout(() => this.setState({ loading: false}), 500 )
+    setTimeout(() => this.setState({ loading: false}), 750)
   }
 
   render(){
 
     if(!this.props.project || this.state.loading){
-      return (<div>Loading ....</div>)
+      return (<Loading />)
     } else {
       console.log(this.props);
       return (

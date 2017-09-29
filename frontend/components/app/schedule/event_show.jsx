@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import MiniCalendarDisplay from './mini_calendar_display'
 import CommentsContainer from '../comments/comments_container'
 import moment from 'moment'
-
+import Loading from '../loader'
 class EventShow extends React.Component {
   constructor(props) {
     super(props)
@@ -21,7 +21,7 @@ class EventShow extends React.Component {
     if(newProps.event){
       this.setDate(newProps)
     }
-    setTimeout(() => this.setState({ loading: false }), 500)
+    setTimeout(() => this.setState({ loading: false }), 750)
   }
 
   setDate(props){
@@ -78,7 +78,7 @@ class EventShow extends React.Component {
       )
     } else {
       return (
-        <div>Loading....</div>
+        <Loading />
       )
     }
   }

@@ -36,10 +36,13 @@ class ToolCard extends React.Component {
     const link = this.toolLink()
     return (
       <Link to={`/${id}/projects/${projectId}/${link}`}>
-      <li>
+      <li className='tool-card'>
           <div>
             <h2>{this.toolHeader()}</h2>
             <br />
+            <ul>
+              
+            </ul>
           </div>
       </li>
     </Link>

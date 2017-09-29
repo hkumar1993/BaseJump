@@ -3,6 +3,10 @@ import ProjectShow from './project_show'
 import {fetchProject} from '../../../actions/project_actions'
 import {fetchCompanyUsers} from '../../../actions/user_actions'
 import {fetchUserProjects} from '../../../actions/project_actions'
+import {fetchProjectEvents} from '../../../actions/event_actions'
+import {fetchProjectTodoLists} from '../../../actions/todolist_actions'
+import {fetchProjectMessages} from '../../../actions/message_actions'
+
 
 const mapStateToProps = (state, ownProps) => {
   const project = state.entities.projects[ownProps.match.params.projectId]
@@ -15,7 +19,10 @@ const mapStateToProps = (state, ownProps) => {
     project,
     users,
     currentUser,
-    currentProject
+    currentProject,
+    messages: state.entities.messages,
+    events: state.entities.events,
+    todoLists: state.entities.todoLists,
   }
 }
 
@@ -24,6 +31,10 @@ const mapDispatchToProps = dispatch => {
     fetchProject: id => dispatch(fetchProject(id)),
     fetchCompanyUsers: id => dispatch(fetchCompanyUsers(id)),
     fetchUserProjects: id => dispatch(fetchUserProjects(id)),
+    fetchProjectEvents: id => dispatch(fetchProjectEvents(id)),
+    fetchProjectMessages: id => dispatch(fetchProjectMessages(id)),
+    fetchProjectTodoLists: id => dispatch(fetchProjectTodoLists(id)),
+
   }
 }
 

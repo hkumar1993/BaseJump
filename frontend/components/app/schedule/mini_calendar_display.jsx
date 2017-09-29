@@ -67,7 +67,7 @@ class MiniCalendarDisplay extends React.Component {
   dateDiff(startDate, endDate){
     // Date difference calculation source:
     // http://www.htmlgoodies.com/html5/javascript/calculating-the-difference-between-two-dates-in-javascript.html
-    const one_day = 24 * 60 * 60 * 1000 //miliseconds in a day
+    const one_day = 24 * 60 * 60 * 750 //miliseconds in a day
     const diff = Math.round((endDate - startDate)/one_day)
     return <h4> · · · {`${diff} ${diff === 1 ? 'day' : 'days'} total`} · · · </h4>
   }

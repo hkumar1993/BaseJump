@@ -37,5 +37,14 @@
   }
 }
 
+h2.event-header{
+  text-align: left;
+  padding-top: 20px;
+  padding-left: 60px;
+  font-size: 25px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 @import 'event_show';
 @import 'event_form';

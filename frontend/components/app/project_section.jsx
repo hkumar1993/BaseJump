@@ -2,7 +2,7 @@ import React from 'react'
 import ProjectCard from './project_card'
 import { Link } from 'react-router-dom'
 import Dropdown, { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'
-
+import Loading from './loader'
 
 class ProjectSection extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class ProjectSection extends React.Component {
       this.props.fetchUserProjects(this.props.currentUser.id).
       then(this.setState({ submittedProject: false}))
     }
-    setTimeout(() => this.setState({loading: false}), 500)
+    setTimeout(() => this.setState({loading: false}), 750)
   }
 
   dividerText(){
@@ -67,11 +67,11 @@ class ProjectSection extends React.Component {
         <li className='card'>
           <h2>My Stuff</h2>
           <ul>
-            <li><Link to='/'>My Assignments 1</Link></li>
-            <li><Link to='/'>My Bookmarks</Link></li>
-            <li><Link to='/'>My Schedule</Link></li>
-            <li><Link to='/'>My Drafts</Link></li>
-            <li><Link to='/'>My Recent Activity</Link></li>
+            <li><Link className='coming-soon' to='/'>My Assignments</Link></li>
+            <li><Link className='coming-soon' to='/'>My Bookmarks</Link></li>
+            <li><Link className='coming-soon' to='/'>My Schedule</Link></li>
+            <li><Link className='coming-soon' to='/'>My Drafts</Link></li>
+            <li><Link className='coming-soon' to='/'>My Recent Activity</Link></li>
 
           </ul>
         </li>
@@ -144,7 +144,7 @@ class ProjectSection extends React.Component {
   render(){
     if(this.state.loading){
       if(this.props.projectType === 'company'){
-        return (<div>Loading...</div>)
+        return (<Loading />)
       } else {
         return (<div></div>)
       }

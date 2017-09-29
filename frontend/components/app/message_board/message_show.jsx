@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import titleize from 'titleize'
 import CommentsContainer from '../comments/comments_container'
+import Loading from '../loader'
 
 class MessageShow extends React.Component {
   constructor(props) {
@@ -38,12 +39,12 @@ class MessageShow extends React.Component {
     // if(this.props.message && this.props.users[this.props.message.authorId]){
     //   this.setState({ author: newProps.users[newProps.message.authorId]})
     // }
-    setTimeout(() => this.setState({ loading: false }), 500)
+    setTimeout(() => this.setState({ loading: false }), 750)
   }
 
   render(){
     if(!this.props.message || this.state.loading){
-      return (<div>Loading ...</div>)
+      return (<Loading />)
     } else {
       console.log(this.props);
       return (
