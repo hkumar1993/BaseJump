@@ -19,7 +19,6 @@ class EventsIndex extends React.Component {
       then(res => this.props.fetchProjectEvents(this.props.projectId)).
       then(res => {
         this.filterDates()
-        this.setCalendarEvents()
       })
   }
 
@@ -77,7 +76,7 @@ class EventsIndex extends React.Component {
   }
 
   render(){
-    if( Object.keys(this.props.events).length > 0 && !this.state.loading ){
+    if( this.props.project && !this.state.loading ){
       return (
         <div className='tool-page'>
           <header>
@@ -92,7 +91,8 @@ class EventsIndex extends React.Component {
               <Calendar
                 value={this.state.selectedDate}
                 onChange={this.handleCalendar}
-                renderChildren={this.setCalendarEvents}/>
+                renderChildren={this.setCalendarEvents}
+                />
             </div>
             <Link to={`/${this.props.currentUser.id}/projects/${this.props.project.id}/events/new`}
               className='btn event btn-submit'>
