@@ -59,8 +59,6 @@ class User < ApplicationRecord
     through: :user_todos,
     source: :assignment
 
-  before_validation :ensure_session_token
-
   attr_reader :password, :company
 
   def self.find_by_username_or_email(login_cred)
@@ -100,8 +98,10 @@ class User < ApplicationRecord
   end
 
   def ensure_avatar
-    img_url = Faker::Placeholdit.image("500x500", 'jpg', Faker::Color.hex_color[1..-1], 'fff', name[0])
-    self.avatar_url ||= img_url
+    if self.name
+      img_url = Faker::Placeholdit.image("500x500", 'jpg', Faker::Color.hex_color[1..-1], 'fff', name[0])
+      self.avatar_url ||= img_url
+    end
   end
 
 end
