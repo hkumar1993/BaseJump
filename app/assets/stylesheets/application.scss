@@ -21,6 +21,7 @@
 @import "bootstrap_lite/buttons";
 @import "landing_page/main";
 @import "main_app/main";
+@import "react_calendar/main";
 
 
 // Styling for react-simple-dropdown
@@ -38,7 +39,7 @@
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .crop{
@@ -51,6 +52,63 @@
   }
 }
 
-input{
+input, textarea{
   outline: none;
+}
+
+// Styling of check-box found from tutorial:
+// https://paulund.co.uk/style-checkboxes-with-css
+
+.check-box{
+  input[type=checkbox]{
+    visibility: hidden;
+  }
+  width: 25px;
+  margin: 5px 10px;
+  position: relative;
+
+  label{
+    cursor: pointer;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    top: 0;
+      left: 0;
+    background: white;
+    border:1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  label:after {
+    opacity: 0.0;
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 6px;
+    background: transparent;
+    top: 7px;
+    left: 4px;
+    border: 3px solid #333;
+    border-radius: 0 0 0 5px;
+    border-top: none;
+    border-right: none;
+
+    transform: rotate(-54deg);
+  }
+
+  label:hover::after {
+    opacity: 0.5;
+  }
+
+  input[type=checkbox]:checked + label:after {
+    opacity: 1;
+    border: 3px solid white;
+    border-top: none;
+    border-right: none;
+  }
+
+  input[type=checkbox]:checked + label {
+    background-color: $submit-green;
+  }
+
 }

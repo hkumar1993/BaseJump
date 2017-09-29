@@ -42,7 +42,7 @@ class Api::EventsController < ApplicationController
 
   def update
     begin
-      @event = Events.find(params[:id])
+      @event = Event.find(params[:id])
     rescue
       @errors = ['Could not find event']
     end

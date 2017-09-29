@@ -16,14 +16,14 @@
     }
 
     div:first-child{
-      width: 130px;
+      width: 180px;
     }
 
     div:last-child{
       display: flex;
       flex-direction: column;
       text-align: left;
-      width: 475px;
+      width: 425px;
     }
 
     .events{
@@ -38,3 +38,4 @@
 }
 
 @import 'event_show';
+@import 'event_form';

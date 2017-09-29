@@ -1,0 +1,68 @@
+.event-form{
+  margin: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  #title{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid transparentize($landing-dark, 0.8);
+    margin-bottom: 20px;
+  }
+
+  #title.invalid-input{
+    border-color: red;
+    color: transparentize(red, 0.8);
+  }
+
+  h2{
+    font-size: 15px;
+    font-weight: 700;
+  }
+
+  textarea{
+    resize: none;
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid transparentize($landing-dark, 0.6);
+  }
+
+  .btn-submit{
+    font-size: 15px;
+  }
+
+}
+
+.event-form > div {
+  display: flex;
+  align-items: center;
+  .react-datepicker-wrapper, .rc-time-picker{
+    margin: 10px;
+    input[type=text]{
+      height: 20px;
+      font-size: 15px;
+      padding: 10px 7px;
+      box-sizing: content-box;
+      border-radius: 5px;
+      border: 1px solid transparentize($landing-dark, 0.8);
+    }
+  }
+}
+
+.event-form > div.invalid-date input[type=text]{
+    border-color: red;
+    color: transparentize(red, 0.5);
+}
+
+
+.errors{
+  color: red;
+}
