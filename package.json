@@ -12,6 +12,7 @@
     "less": "^2.7.2",
     "less-loader": "^4.0.5",
     "moment-range": "^3.0.3",
+    "prop-types": "^15.6.0",
     "rc-time-picker": "^2.4.1",
     "react": "^15.6.1",
     "react-calendar": "^2.0.4",
