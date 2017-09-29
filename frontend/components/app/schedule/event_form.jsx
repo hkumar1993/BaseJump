@@ -25,11 +25,14 @@ class EventForm extends React.Component {
         author_id: this.props.currentUser.id,
         project_id: this.props.projectId
       },
+      oneDay: false,
       errors: {}
     }
     this.handleDateChange = this.handleDateChange.bind(this)
     this.handleTimeChange = this.handleTimeChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleErrors = this.handleErrors.bind(this)
+    this.toggleOneDay = this.toggleOneDay.bind(this)
     window.state = this.state
   }
 
@@ -44,14 +47,17 @@ class EventForm extends React.Component {
             this.setState({
               event: Object.assign({}, this.state.event,
                 {
+                  id: res.event.id,
+                  title: res.event.title,
+                  description: res.event.description,
                   author_id: res.event.authorId,
                   project_id: res.event.projectId,
                   start_date: res.event.startDate,
                   end_date: res.event.endDate,
                 }
               ),
-              startDate: moment(res.event.startDate, 'YYYY-MM-DD LT'),
-              startTime: moment(res.event.startDate),
+              startDate: moment(res.event.startDate),
+              startTime: moment(res.event.startDate, 'HH:mm'),
               endDate: moment(res.event.endDate),
               endTime: moment(res.event.endDate),
             })
@@ -88,29 +94,46 @@ class EventForm extends React.Component {
       start_date: (moment(this.state.startDate.format('DD/MM/YYY') + ' ' + this.state.startTime.format('HH:mm'), 'DD/MM/YY HH:mmZ')).format(),
       end_date: (moment(this.state.endDate.format('DD/MM/YYY') + ' ' + this.state.endTime.format('HH:mm'), 'DD/MM/YY HH:mmZ')).format(),
     })
-    this.props.processEvent(event)
+    this.props.processEvent(event).
+    then( res => this.props.history.push(`/${this.props.currentUser.id}/projects/${this.props.projectId}/events`)).
+    fail( res => this.handleErrors(res.responseJSON.errors))
+  }
+
+  handleErrors(err){
+    let errors = {}
+    err.forEach(error => {
+      const key = error.split(' ')[0].toLowerCase()
+      errors = Object.assign({}, errors, {[key]: error})
+    })
+    this.setState({errors})
   }
 
   update(field) {
     return (e) => {
       e.preventDefault()
       const event = Object.assign({}, this.state.event, {[field]: e.target.value})
-      this.setState({ event })
+      this.setState({ event, errors:{} })
+    }
+  }
+
+  toggleOneDay(){
+    this.setState({ oneDay: !this.state.oneDay })
+    if(this.state.oneDay){
+      this.setState({ startTime: moment().hour(0).minute(0), endTime: moment().hour(0).minute(0) })
+    } else {
+      this.setState({ startTime: moment().hour(0).minute(0), endTime: moment().hour(23).minute(59) })
     }
   }
 
   render(){
-    console.log('Moment',moment('2017-09-28T23:00:00-07:00'));
+    console.log('State', this.state);
+    console.log('Moment?', this.state.startDate);
     if(this.state.loading && !this.props.project){
       return (
         <div>Loading...</div>
       )
     } else {
       console.log(this.state);
-      // console.log(this.state.startDate.hour());
-      const startHour = this.state.startDate.hour()
-      console.log(startHour);
-      console.log(this.state.startDate.format('YYYY-MM-DD '));
       return (
         <div className='tool-page'>
           <header>
@@ -125,23 +148,37 @@ class EventForm extends React.Component {
 
           </header>
           <div className='main-tool'>
-            <form onSubmit={this.handleSubmit}>
-              <input type='text' placeholder="What's the event? ..." onChange={this.update('title')} value={this.state.event.title}/>
+            <form onSubmit={this.handleSubmit} className='event-form'>
+              <input id='title' type='text' placeholder="What's the event? ..."
+                onChange={this.update('title')} value={this.state.event.title}
+                className={this.state.errors['title'] ? 'invalid-input' : ''}/>
+              <span className='errors'>{this.state.errors['title'] ? this.state.errors['title'] : ''}</span>
               <div>
+                <div className='check-box'>
+                  <input type='checkbox' id={`checkbox-one-day`}
+                    onChange={this.toggleOneDay} checked={this.state.oneDay}/>
+                  <label htmlFor={`checkbox-one-day`}>
+                  </label>
+                </div>
+                <h2>Full Day?</h2>
+              </div>
+              <div className={this.state.errors['end'] ? 'invalid-date' : ''}>
+                <h2>Starts:</h2>
                 <DatePicker
                   selected={this.state.startDate}
                   onChange={this.handleDateChange('startDate')}
                 />
                 <TimePicker
                   showSecond={false}
-                  defaultValue={moment().hour(0).minute(0)}
-                  className="xxx"
+                  defaultValue={this.state.startDate}
                   onChange={this.handleTimeChange('startTime')}
                   format={'h:mm a'}
                   use12Hours
+                  className={this.state.oneDay ? 'hidden' : ''}
                 />
               </div>
-              <div>
+              <div className={this.state.errors['end'] ? 'invalid-date' : ''}>
+                <h2>Ends:</h2>
                 <DatePicker
                   selected={this.state.endDate}
                   onChange={this.handleDateChange('endDate')}
@@ -149,12 +186,14 @@ class EventForm extends React.Component {
                 <TimePicker
                   showSecond={false}
                   defaultValue={moment().hour(0).minute(0)}
-                  className="xxx"
                   onChange={this.handleTimeChange('endTime')}
                   format={'h:mm a'}
                   use12Hours
+                  className={this.state.oneDay ? 'hidden' : ''}
                 />
               </div>
+              <span className='errors'>{this.state.errors['end'] ? this.state.errors['end'] : ''}</span>
+              <h2>Notes:</h2>
               <textarea placeholder='Add any notes...' onChange={this.update('description')} value={this.state.event.description}></textarea>
               <input type='submit' className='btn btn-submit'/>
             </form>

@@ -46,10 +46,7 @@ export const fetchEvent = id => dispatch => {
 export const createEvent = event => dispatch => {
   return APIUtil.createEvent(event).
     then(res => dispatch(receiveEvent(res.event))).
-    fail(res => {
-      console.log(res);
-      dispatch(receiveEventErrors(res.responseJSON.errors))
-    })
+    fail(res => dispatch(receiveEventErrors(res.responseJSON.errors)))
 }
 export const updateEvent = event => dispatch => {
   return APIUtil.updateEvent(event).

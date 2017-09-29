@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import MiniCalendarDisplay from './mini_calendar_display'
 import CommentsContainer from '../comments/comments_container'
+import moment from 'moment'
 
 class EventShow extends React.Component {
   constructor(props) {
@@ -27,16 +28,15 @@ class EventShow extends React.Component {
     const startDate = new Date(props.event.startDate)
     const endDate = new Date(props.event.endDate)
     this.setState({
-      startDate: startDate.toDateString(),
-      startTime: `${startDate.toLocaleTimeString().slice(0,4)} ${startDate.toLocaleTimeString().slice(7)}`,
-      endDate: endDate.toDateString(),
-      endTime: `${endDate.toLocaleTimeString().slice(0,4)} ${endDate.toLocaleTimeString().slice(7)}`,
+      startDate,
+      endDate
     })
   }
 
   render(){
-    console.log(this.props);
+    console.log(this.state);
     if(this.props.event && !this.state.loading ){
+      console.log(this.props.event);
       return (
         <div className='tool-page'>
           <header>
@@ -56,7 +56,7 @@ class EventShow extends React.Component {
               <MiniCalendarDisplay startDate={new Date(this.props.event.startDate)}
                 endDate={new Date(this.props.event.endDate)} />
               <h1>{this.props.event.title}</h1>
-              <p>{this.state.startDate}, {this.state.startTime} - {this.state.endDate}, {this.state.endTime}</p>
+              <p>{moment(this.state.startDate).format('dd[,] MMM Do[,] h:mm A')} - {moment(this.state.endDate).format('dd[,] MMM Do[,] h:mm A')}</p>
             </div>
               {
                 Boolean(this.props.event.description) ? (

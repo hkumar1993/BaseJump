@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 class EventIndexItem extends React.Component {
   constructor(props) {
@@ -11,27 +12,26 @@ class EventIndexItem extends React.Component {
   }
 
   render(){
+    const sameDate = new Date(this.props.event.startDate).toDateString() === new Date(this.props.event.endDate).toDateString()
     return (
       <li className='event-item'>
         <div>
           <h1>
           {
-            (new Date(this.props.date[0].startDate)).
-              toDateString().split(' ').slice(0,1) + ', ' +
-            (new Date(this.props.date[0].startDate)).
-              toDateString().split(' ').slice(1,3).join(' ')
+            moment(this.props.event.startDate).format('Do MMM')
+          }
+          {
+            sameDate ? '' : `- ${moment(this.props.event.endDate).format('Do MMM')}`
           }
           </h1>
         </div>
         <div>
           <ul className='events'>
-            {
-              this.props.date.map(event => <li key={event.id}>
-                <Link to={`/${this.props.currentUser.id}/projects/${this.props.project.id}/events/${event.id}`}>
-                  <h1>{event.title}</h1>
-                </Link>
-              </li>)
-            }
+            <li key={this.props.event.id}>
+              <Link to={`/${this.props.currentUser.id}/projects/${this.props.project.id}/events/${this.props.event.id}`}>
+                <h1>{this.props.event.title}</h1>
+              </Link>
+            </li>
           </ul>
         </div>
       </li>
