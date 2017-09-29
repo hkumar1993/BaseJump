@@ -1,5 +1,5 @@
 Company.create!([
-  {name: "john's dough company", image_url: nil}
+  {name: "john's dough company", image_url: 'https://pbs.twimg.com/profile_images/881137793195528192/SYzuiJO7_400x400.jpg'}
   ])
 
 User.create!([
