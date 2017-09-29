@@ -56,7 +56,7 @@ class EventShow extends React.Component {
               <MiniCalendarDisplay startDate={new Date(this.props.event.startDate)}
                 endDate={new Date(this.props.event.endDate)} />
               <h1>{this.props.event.title}</h1>
-              <p>{moment(this.state.startDate).format('dd[,] MMM Do[,] h:mm A')} - {moment(this.state.endDate).format('dd[,] MMM Do[,] h:mm A')}</p>
+              <p>{moment(this.state.startDate).format('ddd[,] MMM Do[,] h:mm A')} - {moment(this.state.endDate).format('ddd[,] MMM Do[,] h:mm A')}</p>
             </div>
               {
                 Boolean(this.props.event.description) ? (
@@ -69,7 +69,7 @@ class EventShow extends React.Component {
                 )
               }
             <div className='event-footer'>
-              <p>Posted by {this.props.users[this.props.event.authorId].name}
+              <p>Posted by {this.props.users[this.props.event.authorId].name}{` `}
                 on {(new Date(this.props.event.createdAt)).toDateString()}</p>
             </div>
           </div>

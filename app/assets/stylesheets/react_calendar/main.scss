@@ -22,10 +22,34 @@
       color: white;
     }
 
+    .react-calendar__month-view__days__day{
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-top: 45px;
+      overflow: hidden;
+    }
+
     .react-calendar__month-view__days {
       div{
         height: 71px;
         border: 0.25px solid transparentize($landing-dark, 0.8);
+      }
+      div.event-block{
+        height: 10px;
+        width: 10px;
+        // position: absolute;
+        margin: 1.5px;
+        color: white;
+        background-color: $landing-blue;
+        border-radius: 25px;
+        // font-size: 50px;
+        // top: 10px;
+      }
+      time{
+        width: 100%;
+        position: absolute;
+        top: 36%;
       }
       button{
         font-size: 15px;
@@ -46,13 +70,4 @@
 
 .react-calendar__month-view__days__day{
   position: relative;
-}
-
-.event-block{
-  position: absolute;
-  height: 71px;
-  width: 71px;
-  background-color: transparentize(red, 0.8);
-  top: 0%;
-  left: 0%;
 }
