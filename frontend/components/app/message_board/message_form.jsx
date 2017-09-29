@@ -5,7 +5,6 @@ import Loading from '../loader'
 class MessageForm extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props);
     this.state = {
       loading: false,
       message: {
@@ -89,7 +88,6 @@ class MessageForm extends React.Component {
 
   switchProjectType(id) {
     return () => {
-      console.log(id);
       $('.message-types .btn').removeClass('btn-submit').addClass('btn-normal')
       $(id).removeClass('btn-normal').addClass('btn-submit')
       const message = Object.assign({}, this.state.message, { message_type: id.slice(1) })
@@ -103,7 +101,6 @@ class MessageForm extends React.Component {
     if(!this.props.project || this.state.loading){
       return (<Loading />)
     } else {
-      console.log(this.state);
       return (
         <div className='tool-page'>
           <header>

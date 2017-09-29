@@ -15,7 +15,6 @@ class PageContent extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    console.log('NEW PROPS!!');
     setTimeout(() => this.setState({loading: false}), 750)
   }
 

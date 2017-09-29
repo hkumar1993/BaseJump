@@ -9,7 +9,6 @@ import Loading from '../loader'
 class EventForm extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props);
     this.state = {
       startDate: moment(),
       startTime: moment().hour(0).minute(0),
@@ -43,7 +42,6 @@ class EventForm extends React.Component {
         if(this.props.params.eventId){
           this.props.fetchEvent(this.props.params.eventId).
           then( res => {
-            console.log('AJAX Result', res);
             this.setState({
               event: Object.assign({}, this.state.event,
                 {
@@ -73,18 +71,13 @@ class EventForm extends React.Component {
 
   handleDateChange(field) {
     return (date) => {
-      console.log(date.format('DD/MM/YYYY'));
       this.setState({ [field]: date })
     }
   }
 
   handleTimeChange(field) {
     return (value) => {
-      console.log(field);
-      console.log(value.format('h:mm a'));
       this.setState({[field]: value})
-      // console.log(value && value.format('h:mm a'));
-      // console.log((moment(this.state.startDate.format('DD/MM/YYY') + ' ' + value.format('HH:mm'), 'DD/MM/YY HH:mm12')).format());
     }
   }
 
@@ -126,14 +119,11 @@ class EventForm extends React.Component {
   }
 
   render(){
-    console.log('State', this.state);
-    console.log('Moment?', this.state.startDate);
     if(this.state.loading && !this.props.project){
       return (
         <Loading />
       )
     } else {
-      console.log(this.state);
       return (
         <div className='tool-page'>
           <header>

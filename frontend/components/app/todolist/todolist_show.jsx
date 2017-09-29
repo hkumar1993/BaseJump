@@ -8,7 +8,6 @@ class TodoListShow extends React.Component {
   constructor(props) {
     super(props)
     this.state = { loading: false }
-    console.log(this.props);
   }
 
   componentDidMount(){
@@ -20,8 +19,6 @@ class TodoListShow extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    // console.log('new', newProps.match.params.listId);
-    // console.log('current', this.props.match.params.listId);
     const id = newProps.match.params.listId;
     if(id !== this.props.match.params.listId){
       this.props.fetchProject(this.newProps.match.params.projectId).
@@ -35,7 +32,6 @@ class TodoListShow extends React.Component {
     if(!Boolean(this.props.todoList) || this.state.loading){
       return (<Loading />)
     } else {
-      console.log(this.props);
       return (
         <div className='tool-page'>
           <header>

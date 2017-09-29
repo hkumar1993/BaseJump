@@ -12,7 +12,6 @@ class TodoListIndex extends React.Component {
   }
 
   componentDidMount(){
-    console.log('Coponent Mounted!');
     this.setState({loading: true})
     this.props.fetchProject(this.props.projectId).
       then(res => this.props.fetchProjectTodoLists(this.props.projectId)).
@@ -20,7 +19,6 @@ class TodoListIndex extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    console.log('Component Remounted!');
     if(newProps.match.params.projectId !== this.props.match.params.projectId){
       this.props.fetchProject(this.props.projectId).
         then(this.props.fetchProjectTodoLists(this.props.projectId)).

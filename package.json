@@ -24,12 +24,14 @@
     "react-simple-dropdown": "^3.2.0",
     "react-spinners": "^0.1.5",
     "redux": "^3.7.2",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "ship-components-texteditor": "^0.3.3",
     "style-loader": "^0.18.2",
     "titleize": "^1.0.0",
     "webpack": "^3.6.0"
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
   },
   "engines": {
     "node": "4.1.1",

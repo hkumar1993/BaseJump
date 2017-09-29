@@ -5,7 +5,6 @@ import moment from 'moment'
 class EventIndexItem extends React.Component {
   constructor(props) {
     super(props)
-    console.log(this.props);
   }
 
   componentDidMount(){

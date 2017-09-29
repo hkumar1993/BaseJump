@@ -1,7 +1,6 @@
 import { RECEIVE_COMMENTS, RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions'
 
 const CommentsReducer = (state = {}, action ) => {
-  console.log('Action', action);
   Object.freeze(state)
   switch (action.type) {
     case RECEIVE_COMMENTS:

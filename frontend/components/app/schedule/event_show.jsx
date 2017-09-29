@@ -34,9 +34,7 @@ class EventShow extends React.Component {
   }
 
   render(){
-    console.log(this.state);
     if(this.props.event && !this.state.loading ){
-      console.log(this.props.event);
       return (
         <div className='tool-page'>
           <header>

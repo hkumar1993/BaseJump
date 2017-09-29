@@ -25,20 +25,6 @@ class MessageShow extends React.Component {
   }
 
   componentWillReceiveProps(newProps){
-    console.log('New', newProps);
-    // if(newProps.messageId !== this.props.messageId){
-    //   console.log('New message');
-    //   this.props.fetchProject(this.props.projectId).
-    //     then(this.props.fetchMessage(this.props.messageId))
-    // }
-    // if(this.props.message && !this.props.users[this.props.message.authorId]){
-    //   console.log('new user');
-    //   newProps.fetchUser(newProps.message.authorId).
-    //
-    // }
-    // if(this.props.message && this.props.users[this.props.message.authorId]){
-    //   this.setState({ author: newProps.users[newProps.message.authorId]})
-    // }
     setTimeout(() => this.setState({ loading: false }), 750)
   }
 
@@ -46,7 +32,6 @@ class MessageShow extends React.Component {
     if(!this.props.message || this.state.loading){
       return (<Loading />)
     } else {
-      console.log(this.props);
       return (
         <div className='tool-page'>
           <header>

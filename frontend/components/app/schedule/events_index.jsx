@@ -31,7 +31,6 @@ class EventsIndex extends React.Component {
   }
 
   filterDates(date){
-    console.log('filtering');
     if(!date){
       date = this.state.selectedDate
     }
@@ -47,7 +46,6 @@ class EventsIndex extends React.Component {
   }
 
   handleCalendar(date){
-    console.log(date);
     this.filterDates(date)
   }
 
@@ -87,8 +85,6 @@ class EventsIndex extends React.Component {
           upcoming_events.push(event)
         }
       })
-      console.log('Happening today',todays_events);
-      console.log('Upcoming', upcoming_events);
       return (
         <div className='tool-page'>
           <header>

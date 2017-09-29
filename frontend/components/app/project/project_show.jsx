@@ -18,7 +18,6 @@ class ProjectShow extends React.Component {
   }
 
   componentWillReceiveProps(newprops){
-    console.log('NEW PROPS!!');
     this.setState({users: newprops.users, project: newprops.project})
     setTimeout(() => this.setState({loading: false}), 750);
   }
@@ -27,10 +26,6 @@ class ProjectShow extends React.Component {
     const users = this.state.users
     const tools = ['messages','todos','schedule']
     const loading = this.state.loading
-    console.log(this.props.match);
-    console.log('proj ids', this.props.projectIds);
-    console.log('cur proj', this.props.currentProject);
-    console.log(this.props.projectIds.includes(this.props.currentProject));
     if(loading) {
       return (
         <Loading />
