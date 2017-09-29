@@ -1,12 +1,22 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CommentsIndex from './comments_index'
-import { fetchTodoListComments, fetchMessageComments } from '../../../actions/comment_actions'
+import { fetchTodoListComments, fetchMessageComments, fetchEventComments } from '../../../actions/comment_actions'
 import { fetchCompanyUsers } from '../../../actions/user_actions'
 
 const mapStateToProps = (state, ownProps) => {
-  const parentId = ownProps.match.params.messageId ? ownProps.match.params.messageId : ownProps.match.params.listId
-  const parentType = ownProps.match.params.messageId ? 'message' : 'todolist'
+  let parentId
+  let parentType
+  if (ownProps.match.params.messageId){
+    parentId = ownProps.match.params.messageId
+    parentType = 'message'
+  } else if (ownProps.match.params.eventId) {
+    parentId = ownProps.match.params.eventId
+    parentType = 'event'
+  } else {
+    parentId = ownProps.match.params.listId
+    parentType = 'todolist'
+  }
   const users = state.entities.users
   return {
       comments: state.entities.comments,
@@ -18,7 +28,15 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const fetchComments = ownProps.match.params.messageId ? fetchMessageComments : fetchTodoListComments
+  let fetchComments
+  if (ownProps.match.params.messageId){
+    fetchComments = fetchMessageComments
+  } else if (ownProps.match.params.eventId) {
+    fetchComments = fetchEventComments
+  } else {
+    fetchComments = fetchTodoListComments
+  }
+
   return {
     fetchComments: id => dispatch(fetchComments(id)),
     fetchCompanyUsers: id => dispatch(fetchCompanyUsers(id)),

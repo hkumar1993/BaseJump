@@ -71,7 +71,17 @@ class Api::EventsController < ApplicationController
     else
       render 'api/events/show', status: 404
     end
+  end
 
+  def event_params
+    params.require(:event).permit(
+      :title,
+      :description,
+      :author_id,
+      :project_id,
+      :start_date,
+      :end_date
+    )
   end
 
 end

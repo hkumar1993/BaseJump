@@ -20,6 +20,7 @@ class CommentsIndex extends React.Component {
       parent_id: this.props.parentId,
       parent_type: this.props.parentType
     }
+    console.log(_emptyComment);
     return (
       <div className='comments-container'>
         <ul>

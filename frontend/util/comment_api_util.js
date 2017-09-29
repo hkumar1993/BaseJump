@@ -10,6 +10,14 @@ export const fetchMessageComments = id => {
   })
 }
 
+export const fetchEventComments = id => {
+  return $.ajax({
+    url: `api/events/${id}/comments`
+  })
+}
+
+
+
 export const createComment = comment => {
   return $.ajax({
     url: `api/comments`,

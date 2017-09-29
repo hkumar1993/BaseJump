@@ -13,7 +13,7 @@ export const fetchEvent = id => {
 export const createEvent = event => {
   return $.ajax({
     method: 'post',
-    url: `api/events/${id}`,
+    url: `api/events`,
     data: { event }
   })
 }

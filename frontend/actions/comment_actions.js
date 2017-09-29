@@ -43,6 +43,11 @@ export const fetchMessageComments = id => dispatch => {
     then(res => dispatch(receiveComments(res.comments))).
     fail(res => dispatch(receiveCommentErrors(res.responseJSON.errors)))
 }
+export const fetchEventComments = id => dispatch => {
+  return APIUtil.fetchEventComments(id).
+    then(res => dispatch(receiveComments(res.comments))).
+    fail(res => dispatch(receiveCommentErrors(res.responseJSON.errors)))
+}
 export const createComment = comment => dispatch => {
   return APIUtil.createComment(comment).
     then(res => dispatch(receiveComment(res.comment))).

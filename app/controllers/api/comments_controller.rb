@@ -4,6 +4,8 @@ class Api::CommentsController < ApplicationController
       @comments = Comment.where('parent_type = ? AND parent_id = ?', 'message', params[:message_id])
     elsif params[:todolist_id]
       @comments = Comment.where('parent_type = ?  AND parent_id = ?', 'todolist', params[:todolist_id])
+    elsif params[:event_id]
+      @comments = Comment.where('parent_type = ?  AND parent_id = ?', 'event', params[:event_id])
     else
       @errors = ['Could not find comments']
     end
