@@ -16,7 +16,7 @@ class EventsIndex extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchUserProjects(this.props.projectId).
+    this.props.fetchUserProjects(this.props.currentUser.id).
       then(res => this.props.fetchProjectEvents(this.props.projectId)).
       then(res => {
         this.filterDates()
@@ -132,6 +132,7 @@ class EventsIndex extends React.Component {
         </div>
       )
     } else {
+      console.log('proejct', this.props.project);
       return (
         <Loading />
       )
