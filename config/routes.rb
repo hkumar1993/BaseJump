@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :users, only: [:index]
     end
     resources :projects, only: [:show, :create, :update, :destroy] do
+      resources :users, only: [:index]
       resources :todolists, only: [:index]
       resources :todos, only: [:index]
       resources :messages, only: [:index]
