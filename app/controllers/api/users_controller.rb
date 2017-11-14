@@ -1,13 +1,13 @@
 class Api::UsersController < ApplicationController
   def index
     begin
-      @company = Company.find(params[:company_id])
+      @project = Project.find(params[:project_id])
     rescue
-      @errors = ['Company not found']
+      @errors = ['Project not found']
     end
 
-    if @company
-      @employees = @company.employees
+    if @project
+      @employees = @project.users
       render 'api/users/index'
     else
       render 'api/users/index', status: 404
