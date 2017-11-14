@@ -8,8 +8,17 @@ import { fetchProjectMessages } from './actions/message_actions'
 
 document.addEventListener('DOMContentLoaded', () => {
   let preLoadedState = {}
+  console.log(window);
   if(window.currentUser){
-    preLoadedState = Object.assign({}, preLoadedState, { session: {currentUser: window.currentUser}})
+    preLoadedState = Object.assign({},
+      preLoadedState,
+      {
+        session: {currentUser: window.currentUser},
+        entities: {
+          company: window.currentCompany,
+          projects: window.currentProjects
+        }
+      })
   }
   const store = configureStore(preLoadedState)
   delete window.currentUser

@@ -8,10 +8,13 @@ class PageContent extends React.Component {
   }
 
   componentDidMount(){
-    this.setState({loading: true})
-    this.props.fetchCurrentUser(this.props.currentUser.id).
-    then(res => this.props.fetchCompany(this.props.companyId)).
-    then(res => this.props.fetchUserProjects(this.props.currentUser.id))
+    if (!this.props.currentUser){
+      this.setState({loading: true})
+      this.props.fetchCurrentUser(this.props.currentUser.id).
+      then(res => this.props.fetchCompany(this.props.companyId)).
+      then(res => this.props.fetchUserProjects(this.props.currentUser.id))
+    }
+
   }
 
   componentWillReceiveProps(newProps){

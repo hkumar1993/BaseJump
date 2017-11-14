@@ -12,9 +12,11 @@ class ProjectShow extends React.Component {
 
   componentDidMount(){
     this.setState({loading: true})
-    this.props.fetchUserProjects(this.props.currentUser.id).
-    then(res => this.props.fetchProject(this.props.match.params.projectId)).
-    then(res => this.props.fetchCompanyUsers(this.props.currentUser.companyId))
+    if(!this.props.currentUser){
+      this.props.fetchUserProjects(this.props.currentUser.id).
+      then(res => this.props.fetchProject(this.props.match.params.projectId))
+    }
+    this.props.fetchCompanyUsers(this.props.currentUser.companyId)
   }
 
   componentWillReceiveProps(newprops){

@@ -21,7 +21,7 @@ class NavBar extends React.Component {
     return (
       <nav className='app-nav'>
         <Link to={`/${userId}/projects`} className='logo'>
-          <img src='https://37signals.com/images/basecamp-logo.png' />
+          <img src='https://37signals.com/images/basecamp-logo.png' alt="Home"/>
         </Link>
 
         <Dropdown>
