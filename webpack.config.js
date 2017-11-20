@@ -53,7 +53,14 @@ module.exports = {
       {
        test: /\.json$/,
        loader: 'json-loader',
+     },
+     {
+       test: /\.(jpg|png|svg)$/,
+       loader: 'url-loader',
+       options: {
+        limit: 25000,
       }
+     }
     ]
   },
   devtool: 'source-maps',
