@@ -13,7 +13,6 @@ class MessageBoard extends React.Component {
     console.log('mounting props',this.props);
     this.setState({ loading: true})
     this.props.fetchCompanyUsers(this.props.currentUser.companyId).
-      then(res => this.props.fetchProject(this.props.match.params.projectId)).
       then(res => this.props.fetchProjectMessages(this.props.match.params.projectId))
   }
 
