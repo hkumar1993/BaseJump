@@ -13,6 +13,9 @@ const NavBar = (props) => {
         <Link to='/login'>Sign In</Link>
       </li>
       <li>
+        <Link to='/login' className='btn btn-primary'>Demo Login</Link>
+      </li>
+      <li>
         <Link to='signup' className='btn btn-primary'>Sign Up</Link>
       </li>
     </ul>
