@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import EventIndexItem from './event_index_item'
 import moment from 'moment'
 import Calendar from 'react-calendar'
-import 'react-calendar/build/Calendar.less'
+import 'react-calendar/dist/Calendar.less'
 import Loading from '../loader'
 
 class EventsIndex extends React.Component {
@@ -100,7 +100,7 @@ class EventsIndex extends React.Component {
                 value={this.state.selectedDate}
                 onChange={this.handleCalendar}
                 renderChildren={this.setCalendarEvents}
-                />
+              />
             </div>
             <Link to={`/${this.props.currentUser.id}/projects/${this.props.project.id}/events/new`}
               className='btn event btn-submit'>

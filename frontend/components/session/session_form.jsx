@@ -2,6 +2,8 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import Loading from '../app/loader'
 
+const basecampLogo = 'https://res.cloudinary.com/basejump/image/upload/v1580630789/basecamp-logo-mini.png';
+
 class SessionForm extends React.Component {
   constructor(props) {
     super(props)
@@ -153,7 +155,7 @@ class SessionForm extends React.Component {
         }
         <div className='form-page'>
           <Link to='/'>
-            <img src='https://37signals.com/images/basecamp-logo.png' />
+            <img src={basecampLogo} />
           </Link>
 
           <form onSubmit={this.handleSubmit}

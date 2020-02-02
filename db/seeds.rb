@@ -1,5 +1,5 @@
 Company.create!([
-  {name: "john's dough company", image_url: "https://pbs.twimg.com/profile_images/881137793195528192/SYzuiJO7_400x400.jpg"}
+  {name: "john's dough company", image_url: "https://i.pinimg.com/originals/87/ad/9d/87ad9dfcc0cb1fb7a5d26a2cd3773b5e.png"}
 ])
 User.create!([
   {name: "John Doe", username: "johndoe", email: "john@doe.com", avatar_url: "https://placehold.it/500x500.jpg/009920/fff?text=J", job_title: nil, admin: nil, owner: nil, password: 'password', company_id: 1},

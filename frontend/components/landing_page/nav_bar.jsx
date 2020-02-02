@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const BasecampLogo = 'https://3.basecamp-static.com/bcxhq/assets/about/press/standard-basecamp-logo-ab9e0d21981d719a3c08c3b24fce0028f7cfd9d8af4106062bb55347967e6e9a.svg'
+const BasecampLogo = 'https://res.cloudinary.com/basejump/image/upload/v1580630150/basecamp-logo.svg'
 
 const NavBar = (props) => {
   return (

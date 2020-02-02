@@ -13,9 +13,10 @@ class TodoListIndex extends React.Component {
 
   componentDidMount(){
     this.setState({loading: true})
-    this.props.fetchProject(this.props.projectId).
-      then(res => this.props.fetchProjectTodoLists(this.props.projectId)).
-      then(res => this.props.fetchProjectTodos(this.props.projectId))
+    debugger
+    this.props.fetchProject(this.props.projectId)
+      .then((res) => this.props.fetchProjectTodoLists(this.props.projectId))
+      .then((res) => this.props.fetchProjectTodos(this.props.projectId));
   }
 
   componentWillReceiveProps(newProps){
@@ -59,13 +60,18 @@ class TodoListIndex extends React.Component {
               currentUser={this.props.currentUser}
               createTodoList={this.props.createTodoList} />
             <ul className='todolists'>
-              { todoLists ? todoLists.map(todoList => (<TodoListIndexItem key={todoList.id}
-                  todoList={todoList} todos={this.props.todos}
+              { todoLists ? todoLists.map(todoList => (
+                <TodoListIndexItem 
+                  key={todoList.id}
+                  todoList={todoList} 
+                  todos={this.props.todos}
                   params={ this.props.params }
                   toggleTodo={ this.props.toggleTodo}
                   createTodo={ this.props.createTodo }
                   fetchTodoListTodos={this.props.fetchTodoListTodos}
-                  currentUser={ this.props.currentUser } />)) : <li></li>}
+                  currentUser={ this.props.currentUser } 
+                />
+              )) : <li></li>}
             </ul>
           </div>
         </div>

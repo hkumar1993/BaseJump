@@ -1,6 +1,6 @@
 # BaseJump
 
-![Basejump](https://3.basecamp-static.com/bcxhq/assets/general/basecamp-favicon-192-2a193f66e2797ce3abb0a944969fe2fa4db010c13613bd3d400208b3e62b6862.png)
+![Basejump](https://res.cloudinary.com/basejump/image/upload/v1580630150/basecamp-logo.svg)
 
 Basejump is a clone of the popular project management app [Basecamp](https://basecamp.com/)
 

@@ -95,11 +95,16 @@ a.btn.btn-user, input.btn.btn-user, span.btn.btn-user {
   color: white;
   background-color: rgb($rand-red, $rand-green, $rand-blue);
 }
+
+.crop {
+  position: relative
+}
+
 .dropdown  .dropdown__trigger .crop::before{
   content: " ";
   position: absolute;
   top: 50%;
-  margin-left: -20px;
+  right: calc(100% + 7px);
   border-width: 5px;
   border-style: solid;
   border-color: rgba(0,0,0,0.5) transparent transparent transparent;

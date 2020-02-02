@@ -43,12 +43,12 @@
 }
 
 .crop{
-  overflow: hidden;
-  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: center;
-  .avatar{
+  
+  img {
+    border-radius: 25px;
   }
 }
 
