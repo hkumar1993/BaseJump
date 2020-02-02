@@ -24,6 +24,8 @@ class NavBar extends React.Component {
       <nav className='app-nav'>
         <Link to={`/${userId}/projects`} className='logo'>
           <img src={basecampLogo} alt="Home"/>
+        </Link>
+        <Link to={`/${userId}/projects`} className='logo'>
           <span>Home</span>
         </Link>
 
