@@ -8,7 +8,7 @@ class Api::ProjectsController < ApplicationController
     end
     if user
       @projects = user.projects
-      if params[:project_type]
+      if @projects && params[:project_type]
         @projects = @projects.reject do |project|
           project.project_type != params[:project_type]
         end
