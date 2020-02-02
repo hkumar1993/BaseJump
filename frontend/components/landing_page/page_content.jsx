@@ -1,7 +1,7 @@
 import React from 'react'
 // import BasecampImage from '../../images/basejump_image.jpg'
 
-const BasecampImage = 'https://3.basecamp-static.com/bcxhq/assets/landing/jtbd/hof-cropped@2x-39cc220172880bf82747f19781a38cb6b3343f2b932bd3aab5742df603910be2.jpg'
+const BasecampImage = 'https://res.cloudinary.com/basejump/image/upload/v1580630150/basecamp-main.jpg'
 
 const PageContent = () => (
   <div className='landing-page-main'>

@@ -4,6 +4,8 @@ import Dropdown from 'react-simple-dropdown'
 import { DropdownTrigger, DropdownContent } from 'react-simple-dropdown'
 import UserIconDisplay from './user_icon_display'
 
+const basecampLogo = 'https://res.cloudinary.com/basejump/image/upload/v1580630789/basecamp-logo-mini.png';
+
 class NavBar extends React.Component {
   constructor(props) {
     super(props)
@@ -21,7 +23,8 @@ class NavBar extends React.Component {
     return (
       <nav className='app-nav'>
         <Link to={`/${userId}/projects`} className='logo'>
-          <img src='https://37signals.com/images/basecamp-logo.png' alt="Home"/>
+          <img src={basecampLogo} alt="Home"/>
+          <span>Home</span>
         </Link>
 
         <Dropdown>
