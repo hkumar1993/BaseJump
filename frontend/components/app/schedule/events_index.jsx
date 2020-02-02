@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import EventIndexItem from './event_index_item'
 import moment from 'moment'
 import Calendar from 'react-calendar'
-import 'react-calendar/build/Calendar.less'
+// import 'react-calendar/build/Calendar.less'
 import Loading from '../loader'
 
 class EventsIndex extends React.Component {
