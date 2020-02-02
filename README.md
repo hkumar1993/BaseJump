@@ -1,3 +1,5 @@
+## Note: This branch is here to show how my coding style was in 2017. Master will be updated soon with updates to reflect my coding style in 2020+
+
 # BaseJump
 
 ![Basejump](https://3.basecamp-static.com/bcxhq/assets/general/basecamp-favicon-192-2a193f66e2797ce3abb0a944969fe2fa4db010c13613bd3d400208b3e62b6862.png)
