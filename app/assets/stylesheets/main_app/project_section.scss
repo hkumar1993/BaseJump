@@ -68,10 +68,11 @@
     }
 
     .company-logo{
-      height: 140px;
       overflow: hidden;
       margin: 0 auto;
       display: inline-block;
+      max-height: 100%;
+      max-width: 100%;
     }
 
     .project-card{

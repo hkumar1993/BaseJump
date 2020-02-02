@@ -1,5 +1,5 @@
 # Company.create!([
-#   {name: "john's dough company", image_url: 'https://pbs.twimg.com/profile_images/881137793195528192/SYzuiJO7_400x400.jpg'}
+#   {name: "john's dough company", image_url: 'https://i.pinimg.com/originals/87/ad/9d/87ad9dfcc0cb1fb7a5d26a2cd3773b5e.png'}
 #   ])
 #
 # User.create!([

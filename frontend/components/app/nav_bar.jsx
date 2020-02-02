@@ -26,7 +26,7 @@ class NavBar extends React.Component {
 
         <Dropdown>
           <DropdownTrigger>
-              <UserIconDisplay user={this.props.currentUser} size={30} />
+              <UserIconDisplay user={this.props.currentUser} size={25} />
           </DropdownTrigger>
           <DropdownContent>
             <ul id='user-funcs' className='user-funcs-dropdown'>
